@@ -1,0 +1,35 @@
+cmake_minimum_required(VERSION 3.10)
+
+enable_testing()
+
+# set the project name
+project(Pathfinding)
+
+# add the executable
+add_executable(quintic_test test/quintic_test.cpp src/spline.cpp)
+
+target_include_directories(quintic_test PUBLIC
+                           "include"
+                           )
+
+add_test(QuinticTest quintic_test)
+set_tests_properties(QuinticTest
+	PROPERTIES
+	PASS_REGULAR_EXPRESSION "Test passed")
+set_tests_properties(QuinticTest
+	PROPERTIES
+	FAIL_REGULAR_EXPRESSION "Test failed")
+
+add_executable(spline_test test/spline_test.cpp src/spline.cpp)
+
+target_include_directories(spline_test PUBLIC
+                           "include"
+                           )
+
+add_test(SplineTest spline_test)
+set_tests_properties(SplineTest
+	PROPERTIES
+	PASS_REGULAR_EXPRESSION "Test passed")
+set_tests_properties(SplineTest
+	PROPERTIES
+	FAIL_REGULAR_EXPRESSION "Test failed")

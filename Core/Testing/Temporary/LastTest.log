@@ -1,0 +1,39 @@
+Start testing: Jan 26 16:18 EST
+----------------------------------------------------------
+1/2 Testing: QuinticTest
+1/2 Test: QuinticTest
+Command: "/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/quintic_test"
+Directory: /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core
+"QuinticTest" start time: Jan 26 16:18 EST
+Output:
+----------------------------------------------------------
+Test passed
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Pass Reason:
+Required regular expression found.Regex=[Test passed
+]
+"QuinticTest" end time: Jan 26 16:18 EST
+"QuinticTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/2 Testing: SplineTest
+2/2 Test: SplineTest
+Command: "/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/spline_test"
+Directory: /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core
+"SplineTest" start time: Jan 26 16:18 EST
+Output:
+----------------------------------------------------------
+Test passed
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Pass Reason:
+Required regular expression found.Regex=[Test passed
+]
+"SplineTest" end time: Jan 26 16:18 EST
+"SplineTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jan 26 16:18 EST

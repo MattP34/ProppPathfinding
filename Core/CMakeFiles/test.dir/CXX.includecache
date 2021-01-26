@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/spline.cpp
+spline.hpp
+/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/spline.hpp
+math.h
+/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/math.h
+

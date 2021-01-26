@@ -1,0 +1,4 @@
+test1 2 0
+QuinticTest 30 0.000266977
+SplineTest 7 0.000852952
+---
