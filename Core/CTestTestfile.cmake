@@ -4,7 +4,9 @@
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
-add_test(QuinticTest "quintic_test")
-set_tests_properties(QuinticTest PROPERTIES  FAIL_REGULAR_EXPRESSION "Test failed" PASS_REGULAR_EXPRESSION "Test passed")
-add_test(SplineTest "spline_test")
-set_tests_properties(SplineTest PROPERTIES  FAIL_REGULAR_EXPRESSION "Test failed" PASS_REGULAR_EXPRESSION "Test passed")
+add_test(quintic_test "quintic_test")
+set_tests_properties(quintic_test PROPERTIES  FAIL_REGULAR_EXPRESSION "(Exception|Test failed)" PASS_REGULAR_EXPRESSION "Test passed" TIMEOUT "120")
+add_test(spline_constructor_test "spline_constructor_test")
+set_tests_properties(spline_constructor_test PROPERTIES  FAIL_REGULAR_EXPRESSION "(Exception|Test failed)" PASS_REGULAR_EXPRESSION "Test passed" TIMEOUT "120")
+add_test(spline_math_test "spline_math_test")
+set_tests_properties(spline_math_test PROPERTIES  FAIL_REGULAR_EXPRESSION "(Exception|Test failed)" PASS_REGULAR_EXPRESSION "Test passed" TIMEOUT "120")

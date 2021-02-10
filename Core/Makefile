@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/Applications/CMake.app/Contents/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
@@ -77,6 +66,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/Applications/CMake.app/Contents/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target test
 test:
@@ -122,17 +122,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named spline_test
+# Target rules for targets named spline_constructor_test
 
 # Build rule for target.
-spline_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 spline_test
-.PHONY : spline_test
+spline_constructor_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 spline_constructor_test
+.PHONY : spline_constructor_test
 
 # fast build rule for target.
-spline_test/fast:
-	$(MAKE) -f CMakeFiles/spline_test.dir/build.make CMakeFiles/spline_test.dir/build
-.PHONY : spline_test/fast
+spline_constructor_test/fast:
+	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/build
+.PHONY : spline_constructor_test/fast
+
+#=============================================================================
+# Target rules for targets named spline_math_test
+
+# Build rule for target.
+spline_math_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 spline_math_test
+.PHONY : spline_math_test
+
+# fast build rule for target.
+spline_math_test/fast:
+	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/build
+.PHONY : spline_math_test/fast
 
 #=============================================================================
 # Target rules for targets named quintic_test
@@ -153,7 +166,8 @@ src/spline.o: src/spline.cpp.o
 
 # target to build an object file
 src/spline.cpp.o:
-	$(MAKE) -f CMakeFiles/spline_test.dir/build.make CMakeFiles/spline_test.dir/src/spline.cpp.o
+	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/spline.cpp.o
+	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/src/spline.cpp.o
 	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/spline.cpp.o
 .PHONY : src/spline.cpp.o
 
@@ -163,7 +177,8 @@ src/spline.i: src/spline.cpp.i
 
 # target to preprocess a source file
 src/spline.cpp.i:
-	$(MAKE) -f CMakeFiles/spline_test.dir/build.make CMakeFiles/spline_test.dir/src/spline.cpp.i
+	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/spline.cpp.i
+	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/src/spline.cpp.i
 	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/spline.cpp.i
 .PHONY : src/spline.cpp.i
 
@@ -173,7 +188,8 @@ src/spline.s: src/spline.cpp.s
 
 # target to generate assembly for a file
 src/spline.cpp.s:
-	$(MAKE) -f CMakeFiles/spline_test.dir/build.make CMakeFiles/spline_test.dir/src/spline.cpp.s
+	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/spline.cpp.s
+	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/src/spline.cpp.s
 	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/spline.cpp.s
 .PHONY : src/spline.cpp.s
 
@@ -204,32 +220,59 @@ test/quintic_test.cpp.s:
 	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/test/quintic_test.cpp.s
 .PHONY : test/quintic_test.cpp.s
 
-test/spline_test.o: test/spline_test.cpp.o
+test/spline_constructor_test.o: test/spline_constructor_test.cpp.o
 
-.PHONY : test/spline_test.o
+.PHONY : test/spline_constructor_test.o
 
 # target to build an object file
-test/spline_test.cpp.o:
-	$(MAKE) -f CMakeFiles/spline_test.dir/build.make CMakeFiles/spline_test.dir/test/spline_test.cpp.o
-.PHONY : test/spline_test.cpp.o
+test/spline_constructor_test.cpp.o:
+	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/test/spline_constructor_test.cpp.o
+.PHONY : test/spline_constructor_test.cpp.o
 
-test/spline_test.i: test/spline_test.cpp.i
+test/spline_constructor_test.i: test/spline_constructor_test.cpp.i
 
-.PHONY : test/spline_test.i
+.PHONY : test/spline_constructor_test.i
 
 # target to preprocess a source file
-test/spline_test.cpp.i:
-	$(MAKE) -f CMakeFiles/spline_test.dir/build.make CMakeFiles/spline_test.dir/test/spline_test.cpp.i
-.PHONY : test/spline_test.cpp.i
+test/spline_constructor_test.cpp.i:
+	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/test/spline_constructor_test.cpp.i
+.PHONY : test/spline_constructor_test.cpp.i
 
-test/spline_test.s: test/spline_test.cpp.s
+test/spline_constructor_test.s: test/spline_constructor_test.cpp.s
 
-.PHONY : test/spline_test.s
+.PHONY : test/spline_constructor_test.s
 
 # target to generate assembly for a file
-test/spline_test.cpp.s:
-	$(MAKE) -f CMakeFiles/spline_test.dir/build.make CMakeFiles/spline_test.dir/test/spline_test.cpp.s
-.PHONY : test/spline_test.cpp.s
+test/spline_constructor_test.cpp.s:
+	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/test/spline_constructor_test.cpp.s
+.PHONY : test/spline_constructor_test.cpp.s
+
+test/spline_math_test.o: test/spline_math_test.cpp.o
+
+.PHONY : test/spline_math_test.o
+
+# target to build an object file
+test/spline_math_test.cpp.o:
+	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/test/spline_math_test.cpp.o
+.PHONY : test/spline_math_test.cpp.o
+
+test/spline_math_test.i: test/spline_math_test.cpp.i
+
+.PHONY : test/spline_math_test.i
+
+# target to preprocess a source file
+test/spline_math_test.cpp.i:
+	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/test/spline_math_test.cpp.i
+.PHONY : test/spline_math_test.cpp.i
+
+test/spline_math_test.s: test/spline_math_test.cpp.s
+
+.PHONY : test/spline_math_test.s
+
+# target to generate assembly for a file
+test/spline_math_test.cpp.s:
+	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/test/spline_math_test.cpp.s
+.PHONY : test/spline_math_test.cpp.s
 
 # Help Target
 help:
@@ -237,9 +280,10 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
+	@echo "... spline_constructor_test"
 	@echo "... edit_cache"
-	@echo "... spline_test"
+	@echo "... rebuild_cache"
+	@echo "... spline_math_test"
 	@echo "... test"
 	@echo "... quintic_test"
 	@echo "... src/spline.o"
@@ -248,9 +292,12 @@ help:
 	@echo "... test/quintic_test.o"
 	@echo "... test/quintic_test.i"
 	@echo "... test/quintic_test.s"
-	@echo "... test/spline_test.o"
-	@echo "... test/spline_test.i"
-	@echo "... test/spline_test.s"
+	@echo "... test/spline_constructor_test.o"
+	@echo "... test/spline_constructor_test.i"
+	@echo "... test/spline_constructor_test.s"
+	@echo "... test/spline_math_test.o"
+	@echo "... test/spline_math_test.i"
+	@echo "... test/spline_math_test.s"
 .PHONY : help
 
 

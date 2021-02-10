@@ -1,4 +1,5 @@
 #include "vector"
+#include "string"
 
 using namespace std;
 
@@ -28,6 +29,9 @@ public:
     double getValue(double x);
     double getDerivativePoint(double x);
     double getAccelPoint(double x);
+    double getJerkPoint(double x);
+
+    string getEquation();
 
     static Quintic quinticXfromWayPoint(WayPoint start, WayPoint end); 
     static Quintic quinticYfromWayPoint(WayPoint start, WayPoint end); 
@@ -56,12 +60,19 @@ public:
     double getValueX(double u);
     double getDerivativePointX(double u);
     double getAccelPointX(double u);
+    double getJerkPointX(double u);
 
     double getValueY(double u);
     double getDerivativePointY(double u);
     double getAccelPointY(double u);
+    double getJerkPointY(double u);
 
     double getSpeed(double u);
     
     double getDisplacement(double uInitial, double uFinal, double columns);
+    double getUOfDisplacement(double uInitial, double target, double columnSize);
+
+    double getAccelForCurve(double u);
+
+    string getEquations();
 };

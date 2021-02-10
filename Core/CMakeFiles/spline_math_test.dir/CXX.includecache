@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/test/spline_math_test.cpp
+vector
+/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/test/vector
+iostream
+/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/test/iostream
+math.h
+/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/test/math.h
+spline.hpp
+/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/test/spline.hpp
+
+include/spline.hpp
+vector
+include/vector
+string
+include/string
+

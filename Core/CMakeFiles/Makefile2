@@ -65,39 +65,76 @@ CMAKE_SOURCE_DIR = /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding
 CMAKE_BINARY_DIR = /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core
 
 #=============================================================================
-# Target rules for target CMakeFiles/spline_test.dir
+# Target rules for target CMakeFiles/spline_constructor_test.dir
 
 # All Build rule for target.
-CMakeFiles/spline_test.dir/all:
-	$(MAKE) -f CMakeFiles/spline_test.dir/build.make CMakeFiles/spline_test.dir/depend
-	$(MAKE) -f CMakeFiles/spline_test.dir/build.make CMakeFiles/spline_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles --progress-num=4,5,6 "Built target spline_test"
-.PHONY : CMakeFiles/spline_test.dir/all
+CMakeFiles/spline_constructor_test.dir/all:
+	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/depend
+	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles --progress-num=4,5,6 "Built target spline_constructor_test"
+.PHONY : CMakeFiles/spline_constructor_test.dir/all
 
 # Include target in all.
-all: CMakeFiles/spline_test.dir/all
+all: CMakeFiles/spline_constructor_test.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/spline_test.dir/rule: cmake_check_build_system
+CMakeFiles/spline_constructor_test.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles 3
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/spline_test.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/spline_constructor_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles 0
-.PHONY : CMakeFiles/spline_test.dir/rule
+.PHONY : CMakeFiles/spline_constructor_test.dir/rule
 
 # Convenience name for target.
-spline_test: CMakeFiles/spline_test.dir/rule
+spline_constructor_test: CMakeFiles/spline_constructor_test.dir/rule
 
-.PHONY : spline_test
-
-# clean rule for target.
-CMakeFiles/spline_test.dir/clean:
-	$(MAKE) -f CMakeFiles/spline_test.dir/build.make CMakeFiles/spline_test.dir/clean
-.PHONY : CMakeFiles/spline_test.dir/clean
+.PHONY : spline_constructor_test
 
 # clean rule for target.
-clean: CMakeFiles/spline_test.dir/clean
+CMakeFiles/spline_constructor_test.dir/clean:
+	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/clean
+.PHONY : CMakeFiles/spline_constructor_test.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/spline_constructor_test.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/spline_math_test.dir
+
+# All Build rule for target.
+CMakeFiles/spline_math_test.dir/all:
+	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/depend
+	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles --progress-num=7,8,9 "Built target spline_math_test"
+.PHONY : CMakeFiles/spline_math_test.dir/all
+
+# Include target in all.
+all: CMakeFiles/spline_math_test.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/spline_math_test.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/spline_math_test.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles 0
+.PHONY : CMakeFiles/spline_math_test.dir/rule
+
+# Convenience name for target.
+spline_math_test: CMakeFiles/spline_math_test.dir/rule
+
+.PHONY : spline_math_test
+
+# clean rule for target.
+CMakeFiles/spline_math_test.dir/clean:
+	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/clean
+.PHONY : CMakeFiles/spline_math_test.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/spline_math_test.dir/clean
 
 .PHONY : clean
 

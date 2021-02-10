@@ -4,6 +4,4 @@
 CMakeFiles/spline_test.dir/src/spline.cpp.o: src/spline.cpp
 CMakeFiles/spline_test.dir/src/spline.cpp.o: include/spline.hpp
 
-CMakeFiles/spline_test.dir/test/spline_test.cpp.o: test/spline_test.cpp
-CMakeFiles/spline_test.dir/test/spline_test.cpp.o: include/spline.hpp
 

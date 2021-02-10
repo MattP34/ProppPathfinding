@@ -1,4 +1,9 @@
 test1 2 0
-QuinticTest 30 0.000266977
-SplineTest 7 0.000852952
+QuinticTest 38 0.000205823
+SplineTest 10 0
+quintic_test 154 2.56312e-05
+spline_test 8 0.000613325
+spline_test2 7 0.00107062
+spline_constructor_test 131 5.03406e-05
+spline_math_test 13 0.320755
 ---

@@ -47,6 +47,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/spline_test.dir/DependInfo.cmake"
+  "CMakeFiles/spline_constructor_test.dir/DependInfo.cmake"
+  "CMakeFiles/spline_math_test.dir/DependInfo.cmake"
   "CMakeFiles/quintic_test.dir/DependInfo.cmake"
   )
