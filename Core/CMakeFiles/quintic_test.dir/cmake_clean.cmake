@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/quintic_test.dir/test/quintic_test.cpp.o"
   "CMakeFiles/quintic_test.dir/src/spline.cpp.o"
+  "CMakeFiles/quintic_test.dir/src/trajectory.cpp.o"
   "quintic_test.pdb"
   "quintic_test"
 )

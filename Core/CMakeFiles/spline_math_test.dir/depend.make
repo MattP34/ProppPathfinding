@@ -4,6 +4,10 @@
 CMakeFiles/spline_math_test.dir/src/spline.cpp.o: src/spline.cpp
 CMakeFiles/spline_math_test.dir/src/spline.cpp.o: include/spline.hpp
 
+CMakeFiles/spline_math_test.dir/src/trajectory.cpp.o: src/trajectory.cpp
+CMakeFiles/spline_math_test.dir/src/trajectory.cpp.o: include/spline.hpp
+CMakeFiles/spline_math_test.dir/src/trajectory.cpp.o: include/trajectory.hpp
+
 CMakeFiles/spline_math_test.dir/test/spline_math_test.cpp.o: test/spline_math_test.cpp
 CMakeFiles/spline_math_test.dir/test/spline_math_test.cpp.o: include/spline.hpp
 

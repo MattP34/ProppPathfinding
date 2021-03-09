@@ -205,6 +205,20 @@ void Spline::getAccelPoint(double u, double outputArray[2])
     outputArray[1] = quinticY.getAccelPoint(u - (int)u);
 }
 
+void Spline::getJerkPoint(double u, double outputArray[2])
+{
+    if (u >= this->piecewiseX.size())
+    {
+        outputArray[0] = this->piecewiseX.at(this->piecewiseX.size() - 1).getJerkPoint(1);
+        outputArray[1] = this->piecewiseY.at(this->piecewiseY.size() - 1).getJerkPoint(1);
+        return;
+    }
+    Quintic quinticX = this->piecewiseX.at((int)u);
+    Quintic quinticY = this->piecewiseY.at((int)u);
+    outputArray[0] = quinticX.getJerkPoint(u - (int)u);
+    outputArray[1] = quinticY.getJerkPoint(u - (int)u);
+}
+
 double Spline::getValueX(double u)
 {
     if (u >= this->piecewiseX.size())
@@ -314,16 +328,22 @@ double Spline::getUOfDisplacement(double uInitial, double target, double columnS
     return currX;
 }
 
+double Spline::getRadius(double u) {
+    double outputArray[2];
+    double dx,dy,ddx,ddy,dddx,dddy;
+    this->getDerivativePoint(u,outputArray);
+    dx = outputArray[0];
+    dy = outputArray[1];
+    this->getAccelPoint(u,outputArray);
+    ddx = outputArray[0];
+    ddy = outputArray[1];
+    this->getJerkPoint(u,outputArray);
+    dddx = outputArray[0];
+    dddy = outputArray[1];
+    double top1 = pow(pow(dx,2)+pow(dy,2),2)*(6*(dy*ddx-))
+}
+
 double Spline::getAccelForCurve(double u) {
-    /*double top1 = pow(this->getDerivativePointY(u),2)*(3*this->getAccelPointX(u)*this->getAccelPointY(u)-this->getDerivativePointY(u)*this->getJerkPointX(u));
-    double top2 = -pow(this->getDerivativePointX(u),2)*(3*this->getAccelPointX(u)*this->getAccelPointY(u)-this->getDerivativePointY(u)*this->getJerkPointX(u));
-    double top3 = pow(this->getDerivativePointX(u),3)*this->getJerkPointY(u);
-    double top4 = this->getDerivativePointX(u)*this->getDerivativePointY(u)*(3*pow(this->getAccelPointX(u),2)-3*pow(this->getAccelPointY(u),2)+this->getDerivativePointY(u)*this->getJerkPointY(u));
-    double bottom = 2*(this->getDerivativePointY(u)*this->getAccelPointX(u)-this->getAccelPointY(u)*this->getDerivativePointX(u))*sqrt(pow(this->getDerivativePointY(u)*this->getAccelPointX(u)-this->getDerivativePointX(u)*this->getAccelPointY(u),2));*/
-    /*double topLeft = pow(this->getDerivativePointX(u)*this->getAccelPointY(u)-this->getAccelPointX(u)*this->getDerivativePointY(u),2)*2*(this->getDerivativePointX(u)*this->getAccelPointX(u)+this->getDerivativePointY(u)*this->getAccelPointY(u));
-    double topRight = (pow(this->getDerivativePointX(u),2)+pow(this->getDerivativePointY(u),2))*(this->getDerivativePointX(u)*this->getAccelPointY(u)-this->getAccelPointX(u)*this->getDerivativePointY(u))*(this->getDerivativePointX(u)*this->getJerkPointY(u)-this->getJerkPointX(u)*this->getDerivativePointY(u));
-    double bottom = pow(pow(this->getDerivativePointX(u)*this->getAccelPointY(u)-this->getAccelPointX(u)*this->getDerivativePointY(u),2),1.5);
-    double output = (topLeft-topRight)/bottom;*/
     double top1 = 3*(this->getDerivativePointY(u)*this->getAccelPointX(u)-this->getDerivativePointX(u)*this->getAccelPointY(u))*(this->getDerivativePointX(u)*this->getAccelPointX(u)+this->getDerivativePointY(u)*this->getAccelPointY(u));
     double top2 = -this->getDerivativePointY(u)*(pow(this->getDerivativePointX(u),2)+pow(this->getDerivativePointY(u),2))*this->getJerkPointX(u);
     double top3 = this->getDerivativePointX(u)*(pow(this->getDerivativePointX(u),2)+pow(this->getDerivativePointY(u),2))*this->getJerkPointY(u);

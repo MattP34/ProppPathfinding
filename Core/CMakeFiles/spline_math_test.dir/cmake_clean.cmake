@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/spline_math_test.dir/test/spline_math_test.cpp.o"
   "CMakeFiles/spline_math_test.dir/src/spline.cpp.o"
+  "CMakeFiles/spline_math_test.dir/src/trajectory.cpp.o"
   "spline_math_test.pdb"
   "spline_math_test"
 )

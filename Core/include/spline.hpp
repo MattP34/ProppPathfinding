@@ -56,6 +56,7 @@ public:
     void getValue(double u, double outputArray[2]);
     void getDerivativePoint(double u, double outputArray[2]);
     void getAccelPoint(double u, double outputArray[2]);
+    void getJerkPoint(double u, double outputArray[2]);
 
     double getValueX(double u);
     double getDerivativePointX(double u);
@@ -72,6 +73,7 @@ public:
     double getDisplacement(double uInitial, double uFinal, double columns);
     double getUOfDisplacement(double uInitial, double target, double columnSize);
 
+    double getRadius(double u);
     double getAccelForCurve(double u);
 
     string getEquations();

@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/Applications/CMake.app/Contents/bin/cmake-gui -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -77,6 +66,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/Applications/CMake.app/Contents/bin/cmake-gui -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # Special rule for the target test
 test:
@@ -122,17 +122,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named spline_constructor_test
+# Target rules for targets named trajectory_test
 
 # Build rule for target.
-spline_constructor_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 spline_constructor_test
-.PHONY : spline_constructor_test
+trajectory_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 trajectory_test
+.PHONY : trajectory_test
 
 # fast build rule for target.
-spline_constructor_test/fast:
-	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/build
-.PHONY : spline_constructor_test/fast
+trajectory_test/fast:
+	$(MAKE) -f CMakeFiles/trajectory_test.dir/build.make CMakeFiles/trajectory_test.dir/build
+.PHONY : trajectory_test/fast
 
 #=============================================================================
 # Target rules for targets named spline_math_test
@@ -146,6 +146,19 @@ spline_math_test: cmake_check_build_system
 spline_math_test/fast:
 	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/build
 .PHONY : spline_math_test/fast
+
+#=============================================================================
+# Target rules for targets named spline_constructor_test
+
+# Build rule for target.
+spline_constructor_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 spline_constructor_test
+.PHONY : spline_constructor_test
+
+# fast build rule for target.
+spline_constructor_test/fast:
+	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/build
+.PHONY : spline_constructor_test/fast
 
 #=============================================================================
 # Target rules for targets named quintic_test
@@ -166,8 +179,9 @@ src/spline.o: src/spline.cpp.o
 
 # target to build an object file
 src/spline.cpp.o:
-	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/spline.cpp.o
+	$(MAKE) -f CMakeFiles/trajectory_test.dir/build.make CMakeFiles/trajectory_test.dir/src/spline.cpp.o
 	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/src/spline.cpp.o
+	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/spline.cpp.o
 	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/spline.cpp.o
 .PHONY : src/spline.cpp.o
 
@@ -177,8 +191,9 @@ src/spline.i: src/spline.cpp.i
 
 # target to preprocess a source file
 src/spline.cpp.i:
-	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/spline.cpp.i
+	$(MAKE) -f CMakeFiles/trajectory_test.dir/build.make CMakeFiles/trajectory_test.dir/src/spline.cpp.i
 	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/src/spline.cpp.i
+	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/spline.cpp.i
 	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/spline.cpp.i
 .PHONY : src/spline.cpp.i
 
@@ -188,10 +203,47 @@ src/spline.s: src/spline.cpp.s
 
 # target to generate assembly for a file
 src/spline.cpp.s:
-	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/spline.cpp.s
+	$(MAKE) -f CMakeFiles/trajectory_test.dir/build.make CMakeFiles/trajectory_test.dir/src/spline.cpp.s
 	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/src/spline.cpp.s
+	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/spline.cpp.s
 	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/spline.cpp.s
 .PHONY : src/spline.cpp.s
+
+src/trajectory.o: src/trajectory.cpp.o
+
+.PHONY : src/trajectory.o
+
+# target to build an object file
+src/trajectory.cpp.o:
+	$(MAKE) -f CMakeFiles/trajectory_test.dir/build.make CMakeFiles/trajectory_test.dir/src/trajectory.cpp.o
+	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/src/trajectory.cpp.o
+	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/trajectory.cpp.o
+	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/trajectory.cpp.o
+.PHONY : src/trajectory.cpp.o
+
+src/trajectory.i: src/trajectory.cpp.i
+
+.PHONY : src/trajectory.i
+
+# target to preprocess a source file
+src/trajectory.cpp.i:
+	$(MAKE) -f CMakeFiles/trajectory_test.dir/build.make CMakeFiles/trajectory_test.dir/src/trajectory.cpp.i
+	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/src/trajectory.cpp.i
+	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/trajectory.cpp.i
+	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/trajectory.cpp.i
+.PHONY : src/trajectory.cpp.i
+
+src/trajectory.s: src/trajectory.cpp.s
+
+.PHONY : src/trajectory.s
+
+# target to generate assembly for a file
+src/trajectory.cpp.s:
+	$(MAKE) -f CMakeFiles/trajectory_test.dir/build.make CMakeFiles/trajectory_test.dir/src/trajectory.cpp.s
+	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/src/trajectory.cpp.s
+	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/trajectory.cpp.s
+	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/trajectory.cpp.s
+.PHONY : src/trajectory.cpp.s
 
 test/quintic_test.o: test/quintic_test.cpp.o
 
@@ -274,21 +326,52 @@ test/spline_math_test.cpp.s:
 	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/test/spline_math_test.cpp.s
 .PHONY : test/spline_math_test.cpp.s
 
+test/trajectory_test.o: test/trajectory_test.cpp.o
+
+.PHONY : test/trajectory_test.o
+
+# target to build an object file
+test/trajectory_test.cpp.o:
+	$(MAKE) -f CMakeFiles/trajectory_test.dir/build.make CMakeFiles/trajectory_test.dir/test/trajectory_test.cpp.o
+.PHONY : test/trajectory_test.cpp.o
+
+test/trajectory_test.i: test/trajectory_test.cpp.i
+
+.PHONY : test/trajectory_test.i
+
+# target to preprocess a source file
+test/trajectory_test.cpp.i:
+	$(MAKE) -f CMakeFiles/trajectory_test.dir/build.make CMakeFiles/trajectory_test.dir/test/trajectory_test.cpp.i
+.PHONY : test/trajectory_test.cpp.i
+
+test/trajectory_test.s: test/trajectory_test.cpp.s
+
+.PHONY : test/trajectory_test.s
+
+# target to generate assembly for a file
+test/trajectory_test.cpp.s:
+	$(MAKE) -f CMakeFiles/trajectory_test.dir/build.make CMakeFiles/trajectory_test.dir/test/trajectory_test.cpp.s
+.PHONY : test/trajectory_test.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... spline_constructor_test"
-	@echo "... edit_cache"
+	@echo "... trajectory_test"
 	@echo "... rebuild_cache"
 	@echo "... spline_math_test"
+	@echo "... edit_cache"
+	@echo "... spline_constructor_test"
 	@echo "... test"
 	@echo "... quintic_test"
 	@echo "... src/spline.o"
 	@echo "... src/spline.i"
 	@echo "... src/spline.s"
+	@echo "... src/trajectory.o"
+	@echo "... src/trajectory.i"
+	@echo "... src/trajectory.s"
 	@echo "... test/quintic_test.o"
 	@echo "... test/quintic_test.i"
 	@echo "... test/quintic_test.s"
@@ -298,6 +381,9 @@ help:
 	@echo "... test/spline_math_test.o"
 	@echo "... test/spline_math_test.i"
 	@echo "... test/spline_math_test.s"
+	@echo "... test/trajectory_test.o"
+	@echo "... test/trajectory_test.i"
+	@echo "... test/trajectory_test.s"
 .PHONY : help
 
 

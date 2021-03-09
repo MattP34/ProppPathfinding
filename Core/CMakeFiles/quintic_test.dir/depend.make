@@ -4,6 +4,10 @@
 CMakeFiles/quintic_test.dir/src/spline.cpp.o: src/spline.cpp
 CMakeFiles/quintic_test.dir/src/spline.cpp.o: include/spline.hpp
 
+CMakeFiles/quintic_test.dir/src/trajectory.cpp.o: src/trajectory.cpp
+CMakeFiles/quintic_test.dir/src/trajectory.cpp.o: include/spline.hpp
+CMakeFiles/quintic_test.dir/src/trajectory.cpp.o: include/trajectory.hpp
+
 CMakeFiles/quintic_test.dir/test/quintic_test.cpp.o: test/quintic_test.cpp
 CMakeFiles/quintic_test.dir/test/quintic_test.cpp.o: include/spline.hpp
 

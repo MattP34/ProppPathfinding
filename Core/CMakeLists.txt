@@ -8,7 +8,7 @@ project(Pathfinding)
 file(GLOB files "test/*.cpp")
 foreach(file ${files})
 	string(REGEX REPLACE "(^.*/|\\.[^.]*$)" "" file_without_ext ${file})
-	add_executable(${file_without_ext} ${file} src/spline.cpp)
+	add_executable(${file_without_ext} ${file} src/spline.cpp src/trajectory.cpp)
 	target_include_directories(${file_without_ext} PUBLIC 
 							"include"
 							)

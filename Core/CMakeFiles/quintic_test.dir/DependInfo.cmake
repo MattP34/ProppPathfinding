@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/spline.cpp" "/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles/quintic_test.dir/src/spline.cpp.o"
+  "/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/trajectory.cpp" "/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles/quintic_test.dir/src/trajectory.cpp.o"
   "/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/test/quintic_test.cpp" "/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles/quintic_test.dir/test/quintic_test.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")

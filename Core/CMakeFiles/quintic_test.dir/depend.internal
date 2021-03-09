@@ -4,6 +4,10 @@
 CMakeFiles/quintic_test.dir/src/spline.cpp.o
  /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/spline.cpp
  include/spline.hpp
+CMakeFiles/quintic_test.dir/src/trajectory.cpp.o
+ /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/trajectory.cpp
+ include/spline.hpp
+ include/trajectory.hpp
 CMakeFiles/quintic_test.dir/test/quintic_test.cpp.o
  /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/test/quintic_test.cpp
  include/spline.hpp
