@@ -36,6 +36,10 @@ double Quintic::getJerkPoint(double x) {
     return this->a * 60 * pow(x, 2) + this->b * 24 * pow(x, 1) + this->c * 6;
 }
 
+double Quintic::getFourthPoint(double x) {
+    return this->a * 120 * pow(x, 1) + this->b * 24;
+}
+
 string Quintic::getEquation() {
     return to_string(this->a)+"t^5+"+to_string(this->b)+"t^4+"+to_string(this->c)+"t^3+"+to_string(this->d)+"t^2+"+to_string(this->e)+"t+"+to_string(this->f);
 }
@@ -98,6 +102,10 @@ double WayPoint::getddx()
 double WayPoint::getddy()
 {
     return this->ddy;
+}
+
+string WayPoint::toString() {
+    return "x:"+to_string(x)+" y:"+to_string(x);
 }
 
 Spline::Spline()
@@ -163,6 +171,10 @@ void Spline::addSegment(WayPoint wayPoint)
     this->tempWayPoint = wayPoint;
 }
 
+int Spline::getLength() {
+    return this->piecewiseX.size();
+}
+
 void Spline::getValue(double u, double outputArray[2])
 {
     if (u >= this->piecewiseX.size())
@@ -176,6 +188,7 @@ void Spline::getValue(double u, double outputArray[2])
     outputArray[0] = quinticX.getValue(u - (int)u);
     outputArray[1] = quinticY.getValue(u - (int)u);
 }
+
 
 void Spline::getDerivativePoint(double u, double outputArray[2])
 {
@@ -219,6 +232,20 @@ void Spline::getJerkPoint(double u, double outputArray[2])
     outputArray[1] = quinticY.getJerkPoint(u - (int)u);
 }
 
+void Spline::getFourthPoint(double u, double outputArray[2])
+{
+     if (u >= this->piecewiseX.size())
+    {
+        outputArray[0] = this->piecewiseX.at(this->piecewiseX.size() - 1).getFourthPoint(1);
+        outputArray[1] = this->piecewiseY.at(this->piecewiseY.size() - 1).getFourthPoint(1);
+        return;
+    }
+    Quintic quinticX = this->piecewiseX.at((int)u);
+    Quintic quinticY = this->piecewiseY.at((int)u);
+    outputArray[0] = quinticX.getFourthPoint(u - (int)u);
+    outputArray[1] = quinticY.getFourthPoint(u - (int)u);
+}
+
 double Spline::getValueX(double u)
 {
     if (u >= this->piecewiseX.size())
@@ -257,6 +284,16 @@ double Spline::getJerkPointX(double u)
     }
     Quintic quinticX = this->piecewiseX.at((int)u);
     return quinticX.getJerkPoint(u - (int)u);
+}
+
+double Spline::getFourthPointX(double u)
+{
+    if (u >= this->piecewiseX.size())
+    {
+        return this->piecewiseX.at(this->piecewiseX.size() - 1).getFourthPoint(1);
+    }
+    Quintic quinticX = this->piecewiseX.at((int)u);
+    return quinticX.getFourthPoint(u - (int)u);
 }
 
 double Spline::getValueY(double u)
@@ -299,9 +336,40 @@ double Spline::getJerkPointY(double u)
     return quinticY.getJerkPoint(u - (int)u);
 }
 
+double Spline::getFourthPointY(double u)
+{
+    if (u >= this->piecewiseY.size())
+    {
+        return this->piecewiseY.at(this->piecewiseY.size() - 1).getFourthPoint(1);
+    }
+    Quintic quinticY = this->piecewiseY.at((int)u);
+    return quinticY.getFourthPoint(u - (int)u);
+}
+
 double Spline::getSpeed(double u)
 {
     return sqrt(pow(this->getDerivativePointX(u), 2) + pow(this->getDerivativePointY(u), 2));
+}
+
+double Spline::getAccel(double u)
+{
+    return sqrt(pow(this->getAccelPointX(u), 2) + pow(this->getAccelPointY(u), 2));
+}
+
+double Spline::getXVelocityComponent(double u) {
+    return getDerivativePointX(u)/getSpeed(u);
+}
+
+double Spline::getYVelocityComponent(double u) {
+    return getDerivativePointY(u)/getSpeed(u);
+}
+
+double Spline::getXAccelComponent(double u) {
+    return getAccelPointX(u)/getSpeed(u);
+}
+
+double Spline::getYAccelComponent(double u) {
+    return getAccelPointY(u)/getSpeed(u);
 }
 
 double Spline::getDisplacement(double uInitial, double uFinal, double columns)
@@ -320,7 +388,7 @@ double Spline::getDisplacement(double uInitial, double uFinal, double columns)
 double Spline::getUOfDisplacement(double uInitial, double target, double columnSize) {
     double currX = uInitial;
     double sum = 0;
-    while((target < 0 || sum < target) && (target > 0 || sum > target) && currX <= this->piecewiseX.size())
+    while((target < 0 || sum < target) && (target > 0 || sum > target) && (currX+columnSize <= this->piecewiseX.size() || currX+columnSize >= 0))
     {
         sum += (this->getSpeed(currX)+this->getSpeed(currX+columnSize)) * columnSize/2;
         currX += columnSize;
@@ -340,7 +408,52 @@ double Spline::getRadius(double u) {
     this->getJerkPoint(u,outputArray);
     dddx = outputArray[0];
     dddy = outputArray[1];
-    double top1 = pow(pow(dx,2)+pow(dy,2),2)*(6*(dy*ddx-))
+    return pow(pow(dx,2)+pow(dy,2),3.0/2.0)/abs(dx*ddy-dy*ddx);
+}
+
+double Spline::getDRadius(double u) {
+    double outputArray[2];
+    double dx,dy,ddx,ddy,dddx,dddy;
+    this->getDerivativePoint(u,outputArray);
+    dx = outputArray[0];
+    dy = outputArray[1];
+    this->getAccelPoint(u,outputArray);
+    ddx = outputArray[0];
+    ddy = outputArray[1];
+    this->getJerkPoint(u,outputArray);
+    dddx = outputArray[0];
+    dddy = outputArray[1];
+    //double top1 = -6*pow(dy*ddx-dx*ddy,2)*(dx*ddx+dy*ddy);
+    //double top2 = 2*(pow(dx,2)+pow(dy,2))*(-dy*ddx+dx*ddy)*(-dy*dddx+dx*dddy);
+    //double bottom = 2*pow(pow(dx,2)+pow(dy,2),5.0/2.0)*sqrt(pow(dy*ddx-dx*ddy,2));
+    double top1 = sqrt(pow(dx,2)+pow(dy,2));
+    double top2 = pow(dy*ddx-dx*ddy,2)*(dx*ddx+dy*ddy);
+    double top3 = 2*(pow(dx,2)+pow(dy,2))*(-dy*ddx+dx*ddy)*(-dy*dddx+dx*dddy);
+    double bottom = 2*(pow(abs(dy*ddx-dx*ddy),3));
+    return top1*(6*top2-top3)/bottom;
+}
+
+double Spline::getDDRadius(double u) {
+    double outputArray[2];
+    double dx,dy,ddx,ddy,dddx,dddy,ddddx,ddddy;
+    this->getDerivativePoint(u,outputArray);
+    dx = outputArray[0];
+    dy = outputArray[1];
+    this->getAccelPoint(u,outputArray);
+    ddx = outputArray[0];
+    ddy = outputArray[1];
+    this->getJerkPoint(u,outputArray);
+    dddx = outputArray[0];
+    dddy = outputArray[1];
+    this->getFourthPoint(u, outputArray);
+    ddddx = outputArray[0];
+    ddddy = outputArray[1];
+    double top1 = -6*(pow(dx,2)+pow(dy,2))*(-dy*ddx+dx*ddy)*(dx*ddx+dy*ddy)*(-dy*dddx+dx*dddy);
+    double top2 = 3*pow(dy*ddx-dx*ddy,2)*(pow(dx*ddx+dy*ddy,2)+((pow(dx,2)+pow(dy,2))*(pow(ddx,2)+pow(ddy,2)+dx*dddx+dy+dddy)));
+    double top3 = pow(pow(dx,2)+pow(dy,2),2);
+    double top4 = (2*pow(dy*dddx-dx*dddy,2)-((dy*ddx-dx*ddy)*(ddy*dddx-ddx*dddy+dy*ddddx-dx*ddddy)));
+    double bottom = sqrt(pow(dx,2)+pow(dy,2))*pow(abs(dy*ddx-dx*ddy),3);
+    return (top1+top2+(top3*top4))/bottom;
 }
 
 double Spline::getAccelForCurve(double u) {

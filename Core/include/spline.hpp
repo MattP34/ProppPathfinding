@@ -1,6 +1,9 @@
 #include "vector"
 #include "string"
 
+#ifndef SPLINE_HPP
+#define SPLINE_HPP
+
 using namespace std;
 
 struct WayPoint
@@ -16,6 +19,8 @@ public:
     double getdy();
     double getddx();
     double getddy();
+
+    string toString();
 };
 
 struct Quintic
@@ -30,6 +35,7 @@ public:
     double getDerivativePoint(double x);
     double getAccelPoint(double x);
     double getJerkPoint(double x);
+    double getFourthPoint(double x);
 
     string getEquation();
 
@@ -57,24 +63,39 @@ public:
     void getDerivativePoint(double u, double outputArray[2]);
     void getAccelPoint(double u, double outputArray[2]);
     void getJerkPoint(double u, double outputArray[2]);
+    void getFourthPoint(double u, double outputArray[2]);
+
+    int getLength();
 
     double getValueX(double u);
     double getDerivativePointX(double u);
     double getAccelPointX(double u);
     double getJerkPointX(double u);
+    double getFourthPointX(double u);
 
     double getValueY(double u);
     double getDerivativePointY(double u);
     double getAccelPointY(double u);
     double getJerkPointY(double u);
+    double getFourthPointY(double u);
 
     double getSpeed(double u);
+    double getAccel(double u);
+
+    double getXVelocityComponent(double u);
+    double getYVelocityComponent(double u);
+    double getXAccelComponent(double u);
+    double getYAccelComponent(double u);
     
     double getDisplacement(double uInitial, double uFinal, double columns);
     double getUOfDisplacement(double uInitial, double target, double columnSize);
 
     double getRadius(double u);
+    double getDRadius(double u);
+    double getDDRadius(double u);
     double getAccelForCurve(double u);
 
     string getEquations();
 };
+
+#endif
