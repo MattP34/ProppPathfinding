@@ -5,6 +5,12 @@
         "vector": "cpp",
         "iostream": "cpp",
         "ostream": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "complex": "cpp",
+        "algorithm": "cpp",
+        "ios": "cpp",
+        "array": "cpp",
+        "string_view": "cpp",
+        "unordered_map": "cpp"
     }
 }

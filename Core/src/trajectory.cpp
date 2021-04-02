@@ -29,7 +29,7 @@ MotionState::MotionState() {
     this->alpha = 0;
 }
 
-MotionState::MotionState(double time, double x,double y,double angle,double xVel,double yVel,double omega,double accel,double alpha) {
+MotionState::MotionState(double time, double x,double y,double angle,double xVel,double yVel,double omega,double accel,double alpha,double disp) {
     this->time = time;
     this->x = x;
     this->y = y;
@@ -39,6 +39,7 @@ MotionState::MotionState(double time, double x,double y,double angle,double xVel
     this->omega = omega;
     this->accel = accel;
     this->alpha = alpha;
+    this->disp = disp;
 }
 
 double MotionState::getSpeed() {
@@ -51,7 +52,7 @@ double MotionState::getAccel() {
 
 string MotionState::toString() {
     //return "t:"+to_string(time)+" x:"+to_string(x)+" y:"+to_string(y)+" v:"+to_string(getSpeed())+" a:"+to_string(accel)+" xv:"+to_string(xVel)+" yv:"+to_string(yVel);
-    return to_string(time)+","+to_string(x)+","+to_string(y)+","+to_string(angle)+","+to_string(getSpeed())+","+to_string(atan2(yVel,xVel)*180.0/3.1415)+","+to_string(omega)+","+to_string(accel)+","+to_string(alpha);
+    return to_string(time)+","+to_string(x)+","+to_string(y)+","+to_string(angle)+","+to_string(getSpeed())+","+to_string(atan2(yVel,xVel)*180.0/3.1415)+","+to_string(omega)+","+to_string(accel)+","+to_string(alpha)+","+to_string(disp);
 }
 
 Trajectory::Trajectory() {
@@ -61,6 +62,7 @@ Trajectory::Trajectory() {
     this->profile = vector<MotionState>();
     this->storedProfiles = vector<vector<MotionState> >();
     this->keyPointVelocity = vector<double>();
+    this->keyPointDisplacement = vector<double>();
 }
 
 Trajectory::Trajectory(Spline spline, Kinematics kinematics) {
@@ -70,6 +72,7 @@ Trajectory::Trajectory(Spline spline, Kinematics kinematics) {
     this->profile = vector<MotionState>();
     this->storedProfiles = vector<vector<MotionState> >();
     this->keyPointVelocity = vector<double>();
+    this->keyPointDisplacement = vector<double>();
 }
 
 Trajectory::Trajectory(vector<WayPoint> wayPoints, Kinematics kinematics) {
@@ -79,6 +82,7 @@ Trajectory::Trajectory(vector<WayPoint> wayPoints, Kinematics kinematics) {
     this->profile = vector<MotionState>();
     this->storedProfiles = vector<vector<MotionState> >();
     this->keyPointVelocity = vector<double>();
+    this->keyPointDisplacement = vector<double>();
 }
 
 double Trajectory::findPointDCurvature(double val, double start, double end, double findSize) {
@@ -99,6 +103,7 @@ void Trajectory::findKeyPoints(double iterateSize, double findSize, double initi
     this->keyPointVelocity.clear();
     this->keyPoints.push_back(0);
     this->keyPointVelocity.push_back(initialVelocity);
+    this->keyPointDisplacement.push_back(0);
     this->storedProfiles.push_back(vector<MotionState>());
     for(double u = 0; u < this->spline.getLength(); u+=iterateSize) {
         if(pos == sgn(this->spline.getDRadius(u))) continue;
@@ -108,11 +113,13 @@ void Trajectory::findKeyPoints(double iterateSize, double findSize, double initi
         if(val == -1) continue;
         this->keyPoints.push_back(val);
         this->keyPointVelocity.push_back(min(getVelocityOnCurve(val),this->kinematics.vMax));
+        this->keyPointDisplacement.push_back(this->keyPointDisplacement.at(this->keyPointDisplacement.size()-1)+this->spline.getDisplacement(this->keyPoints.at(this->keyPoints.size()-1),val,(val-this->keyPoints.at(this->keyPoints.size()-1)/iterateSize)));
         this->storedProfiles.push_back(vector<MotionState>());
         this->storedProfiles.push_back(vector<MotionState>());
     }
     this->keyPoints.push_back(this->spline.getLength());
     this->keyPointVelocity.push_back(finalVelocity);
+    this->keyPointDisplacement.push_back(this->keyPointDisplacement.at(this->keyPointDisplacement.size()-1)+this->spline.getDisplacement(this->keyPoints.at(this->keyPoints.size()-1),this->spline.getLength(),(this->spline.getLength()-this->keyPoints.at(this->keyPoints.size()-1)/iterateSize)));
     this->storedProfiles.push_back(vector<MotionState>());
 }
 
@@ -132,7 +139,7 @@ double Trajectory::getTangentialAccelLeft(double u, double speed) {
     return sqrt(max(1-pow(pow(speed,2)/radius/this->kinematics.aCentrMax,2),0.0))*this->kinematics.aMax;
 }
 
-void Trajectory::iterate(vector<MotionState> &p, double &u1, double &u2, bool reversed, double iterationTime, double integralColumns) {
+void Trajectory::iterate(vector<MotionState> &p, double &u1, double &u2, bool reversed, double iterationTime, double integralColumns, double &prevDisp) {
     MotionState prev = p.at(p.size()-1);
     u1 = u2;
     int posCoef = 1;
@@ -147,9 +154,10 @@ void Trajectory::iterate(vector<MotionState> &p, double &u1, double &u2, bool re
     } else {
         accel = min(getTangentialAccelLeft(u1,velocity),(min(getVelocityOnCurve(u2),this->kinematics.vMax)-velocity)/iterationTime)*posCoef;
     }
+    prevDisp += velocity*posCoef*iterationTime;
     p.push_back(MotionState(prev.time+posCoef*iterationTime,spline.getValueX(u1),spline.getValueY(u1),0,
         spline.getXVelocityComponent(u1)*velocity,spline.getYVelocityComponent(u1)*velocity,0,
-        accel,0));
+        accel,0,prevDisp));
 }
 
 int Trajectory::profileBetweenPoints(int startIndex, double iterationTime, double integralColumns) {
@@ -158,18 +166,20 @@ int Trajectory::profileBetweenPoints(int startIndex, double iterationTime, doubl
     MotionState prev;
     double u1 = this->keyPoints.at(startIndex);
     double u2 = this->keyPoints.at(startIndex+1);
+    double disp1 = this->keyPointDisplacement.at(startIndex);
+    double disp2 = this->keyPointDisplacement.at(startIndex+1);
     double u12, u22;
     double velocity, accel;
     velocity = this->keyPointVelocity.at(startIndex);
     accel = min(getTangentialAccelLeft(u1,velocity),this->kinematics.aMax);
     p1.push_back(MotionState(0,spline.getValueX(u1),spline.getValueY(u1),0,
         spline.getXVelocityComponent(u1)*velocity,spline.getYVelocityComponent(u1)*velocity,0,
-        accel,0));
+        accel,0,disp1));
     velocity = this->keyPointVelocity.at(startIndex+1);
     accel = -min(getTangentialAccelLeft(u2,velocity),this->kinematics.aMax);
     p2.push_back(MotionState(0,spline.getValueX(u2),spline.getValueY(u2),0,
         spline.getXVelocityComponent(u2)*velocity,spline.getYVelocityComponent(u2)*velocity,0,
-        accel,0));
+        accel,0,disp2));
     prev = p1.at(0);
     u12 = this->spline.getUOfDisplacement(u1,prev.getSpeed()*iterationTime,(1/(this->spline.getSpeed(u1)))*prev.getSpeed()*iterationTime/integralColumns);
     prev = p2.at(0);
@@ -180,9 +190,9 @@ int Trajectory::profileBetweenPoints(int startIndex, double iterationTime, doubl
     while(((u2-u1)*min(this->spline.getSpeed(u2),this->spline.getSpeed(u1)))/max(p1.at(p1.size()-1).getSpeed(),p2.at(p2.size()-1).getSpeed()) > iterationTime) { //when the points are too further than the iteration time
         //cout << "u1:" + to_string(u1) + " u2:" + to_string(u2) << endl;
         if(p1.at(p1.size()-1).getSpeed() < p2.at(p2.size()-1).getSpeed()) {
-            iterate(p1,u1,u12,false,iterationTime,integralColumns);
+            iterate(p1,u1,u12,false,iterationTime,integralColumns,disp1);
         } else {
-            iterate(p2,u2,u22,true,iterationTime,integralColumns);
+            iterate(p2,u2,u22,true,iterationTime,integralColumns,disp2);
         }
         //cout << "test 7" << endl;
     }
@@ -199,7 +209,7 @@ int Trajectory::profileBetweenPoints(int startIndex, double iterationTime, doubl
         accel = min(getTangentialAccelLeft(u1,velocity),this->kinematics.aMax);
         this->storedProfiles.at(startIndex*2).push_back(MotionState(0,this->spline.getValueX(u1),this->spline.getValueY(u1),0,
             velocity*this->spline.getXVelocityComponent(u1),velocity*this->spline.getYVelocityComponent(u1),0,
-            accel,0));
+            accel,0,this->keyPointDisplacement.at(startIndex)));
         if(!((prev.getSpeed()*.99 <= this->keyPointVelocity.at(startIndex) && this->keyPointVelocity.at(startIndex) <= velocity*1.01)
             || (prev.getSpeed()*1.01 >= this->keyPointVelocity.at(startIndex) && this->keyPointVelocity.at(startIndex) >= velocity*0.99))) {
             this->keyPointVelocity.at(startIndex) = velocity;
@@ -212,6 +222,7 @@ int Trajectory::profileBetweenPoints(int startIndex, double iterationTime, doubl
         for(int i = p2.size()-1; i >= 0; i--) {
             this->storedProfiles.at(startIndex*2+1).push_back(p2.at(i));
         }
+        //cout << "bye" << endl;
     } else {
         u2 = this->keyPoints.at(startIndex+1);
         double timeBetween = this->spline.getDisplacement(u1,u2,integralColumns)/p1.at(p1.size()-1).getSpeed();
@@ -220,12 +231,13 @@ int Trajectory::profileBetweenPoints(int startIndex, double iterationTime, doubl
         accel = min(getTangentialAccelLeft(u2,velocity),this->kinematics.aMax);
         this->storedProfiles.at(startIndex*2+1).push_back(MotionState(0,this->spline.getValueX(u2),this->spline.getValueY(u2),0,
             velocity*this->spline.getXVelocityComponent(u2),velocity*this->spline.getYVelocityComponent(u2),0,
-            accel,0));
+            accel,0,this->keyPointDisplacement.at(startIndex+1)));
         if(!((prev.getSpeed()*.99 <= this->keyPointVelocity.at(startIndex+1) && this->keyPointVelocity.at(startIndex+1) <= velocity*1.01)
             || (prev.getSpeed()*1.01 >= this->keyPointVelocity.at(startIndex+1) && this->keyPointVelocity.at(startIndex+1) >= velocity*0.99))) {
             this->keyPointVelocity.at(startIndex+1) = velocity;
             return 1;
         }
+        //cout << "bye" << endl;
         this->keyPointVelocity.at(startIndex+1) = velocity;
     }
     return 0;
@@ -233,7 +245,8 @@ int Trajectory::profileBetweenPoints(int startIndex, double iterationTime, doubl
 
 void Trajectory::calculate(double iterateSize, double findSize) {
     int returnVal = 0;
-    this->findKeyPoints(iterateSize, findSize,0,0);
+    cout << this->kinematics.vMax << endl;
+    this->findKeyPoints(iterateSize, findSize,0,this->kinematics.vMax);
     int counter = 0;
     for(int i = 0; i < this->keyPoints.size()-1; i++) {
         returnVal = profileBetweenPoints(i,.001,100);

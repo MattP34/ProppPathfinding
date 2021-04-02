@@ -1,7 +1,8 @@
+/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles/test.dir
+/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles/quintic_test.dir
+/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles/pathfinding.dir
 /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles/trajectory_test.dir
 /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles/rebuild_cache.dir
 /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles/spline_math_test.dir
 /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles/edit_cache.dir
 /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles/spline_constructor_test.dir
-/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles/test.dir
-/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles/quintic_test.dir

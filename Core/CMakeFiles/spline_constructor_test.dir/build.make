@@ -96,11 +96,39 @@ CMakeFiles/spline_constructor_test.dir/src/trajectory.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/spline_constructor_test.dir/src/trajectory.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/trajectory.cpp -o CMakeFiles/spline_constructor_test.dir/src/trajectory.cpp.s
 
+CMakeFiles/spline_constructor_test.dir/src/math_util.cpp.o: CMakeFiles/spline_constructor_test.dir/flags.make
+CMakeFiles/spline_constructor_test.dir/src/math_util.cpp.o: src/math_util.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/spline_constructor_test.dir/src/math_util.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/spline_constructor_test.dir/src/math_util.cpp.o -c /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/math_util.cpp
+
+CMakeFiles/spline_constructor_test.dir/src/math_util.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/spline_constructor_test.dir/src/math_util.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/math_util.cpp > CMakeFiles/spline_constructor_test.dir/src/math_util.cpp.i
+
+CMakeFiles/spline_constructor_test.dir/src/math_util.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/spline_constructor_test.dir/src/math_util.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/math_util.cpp -o CMakeFiles/spline_constructor_test.dir/src/math_util.cpp.s
+
+CMakeFiles/spline_constructor_test.dir/src/io_helpers.cpp.o: CMakeFiles/spline_constructor_test.dir/flags.make
+CMakeFiles/spline_constructor_test.dir/src/io_helpers.cpp.o: src/io_helpers.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/spline_constructor_test.dir/src/io_helpers.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/spline_constructor_test.dir/src/io_helpers.cpp.o -c /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/io_helpers.cpp
+
+CMakeFiles/spline_constructor_test.dir/src/io_helpers.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/spline_constructor_test.dir/src/io_helpers.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/io_helpers.cpp > CMakeFiles/spline_constructor_test.dir/src/io_helpers.cpp.i
+
+CMakeFiles/spline_constructor_test.dir/src/io_helpers.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/spline_constructor_test.dir/src/io_helpers.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/io_helpers.cpp -o CMakeFiles/spline_constructor_test.dir/src/io_helpers.cpp.s
+
 # Object files for target spline_constructor_test
 spline_constructor_test_OBJECTS = \
 "CMakeFiles/spline_constructor_test.dir/test/spline_constructor_test.cpp.o" \
 "CMakeFiles/spline_constructor_test.dir/src/spline.cpp.o" \
-"CMakeFiles/spline_constructor_test.dir/src/trajectory.cpp.o"
+"CMakeFiles/spline_constructor_test.dir/src/trajectory.cpp.o" \
+"CMakeFiles/spline_constructor_test.dir/src/math_util.cpp.o" \
+"CMakeFiles/spline_constructor_test.dir/src/io_helpers.cpp.o"
 
 # External object files for target spline_constructor_test
 spline_constructor_test_EXTERNAL_OBJECTS =
@@ -108,9 +136,11 @@ spline_constructor_test_EXTERNAL_OBJECTS =
 spline_constructor_test: CMakeFiles/spline_constructor_test.dir/test/spline_constructor_test.cpp.o
 spline_constructor_test: CMakeFiles/spline_constructor_test.dir/src/spline.cpp.o
 spline_constructor_test: CMakeFiles/spline_constructor_test.dir/src/trajectory.cpp.o
+spline_constructor_test: CMakeFiles/spline_constructor_test.dir/src/math_util.cpp.o
+spline_constructor_test: CMakeFiles/spline_constructor_test.dir/src/io_helpers.cpp.o
 spline_constructor_test: CMakeFiles/spline_constructor_test.dir/build.make
 spline_constructor_test: CMakeFiles/spline_constructor_test.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable spline_constructor_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable spline_constructor_test"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/spline_constructor_test.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -1,57 +1,74 @@
-Start testing: Feb 09 23:24 EST
+Start testing: Mar 31 14:47 EDT
 ----------------------------------------------------------
-1/3 Testing: quintic_test
-1/3 Test: quintic_test
+1/4 Testing: quintic_test
+1/4 Test: quintic_test
 Command: "/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/quintic_test"
 Directory: /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core
-"quintic_test" start time: Feb 09 23:24 EST
+"quintic_test" start time: Mar 31 14:47 EDT
 Output:
 ----------------------------------------------------------
 Test passed
 <end of output>
-Test time =   0.00 sec
+Test time =   0.11 sec
 ----------------------------------------------------------
 Test Pass Reason:
 Required regular expression found.Regex=[Test passed
 ]
-"quintic_test" end time: Feb 09 23:24 EST
+"quintic_test" end time: Mar 31 14:47 EDT
 "quintic_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-2/3 Testing: spline_constructor_test
-2/3 Test: spline_constructor_test
+2/4 Testing: spline_constructor_test
+2/4 Test: spline_constructor_test
 Command: "/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/spline_constructor_test"
 Directory: /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core
-"spline_constructor_test" start time: Feb 09 23:24 EST
+"spline_constructor_test" start time: Mar 31 14:47 EDT
 Output:
 ----------------------------------------------------------
 Test passed
 <end of output>
-Test time =   0.01 sec
+Test time =   0.39 sec
 ----------------------------------------------------------
 Test Pass Reason:
 Required regular expression found.Regex=[Test passed
 ]
-"spline_constructor_test" end time: Feb 09 23:24 EST
+"spline_constructor_test" end time: Mar 31 14:47 EDT
 "spline_constructor_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-3/3 Testing: spline_math_test
-3/3 Test: spline_math_test
+3/4 Testing: spline_math_test
+3/4 Test: spline_math_test
 Command: "/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/spline_math_test"
 Directory: /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core
-"spline_math_test" start time: Feb 09 23:24 EST
+"spline_math_test" start time: Mar 31 14:47 EDT
 Output:
 ----------------------------------------------------------
 Test passed
 <end of output>
-Test time =   4.17 sec
+Test time =  41.10 sec
 ----------------------------------------------------------
 Test Pass Reason:
 Required regular expression found.Regex=[Test passed
 ]
-"spline_math_test" end time: Feb 09 23:24 EST
-"spline_math_test" time elapsed: 00:00:04
+"spline_math_test" end time: Mar 31 14:48 EDT
+"spline_math_test" time elapsed: 00:00:41
 ----------------------------------------------------------
 
-End testing: Feb 09 23:24 EST
+4/4 Testing: trajectory_test
+4/4 Test: trajectory_test
+Command: "/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/trajectory_test"
+Directory: /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core
+"trajectory_test" start time: Mar 31 14:48 EDT
+Output:
+----------------------------------------------------------
+Test failed
+<end of output>
+Test time =   0.99 sec
+----------------------------------------------------------
+Test Fail Reason:
+Error regular expression found in output. Regex=[(Exception|Test failed)]
+"trajectory_test" end time: Mar 31 14:48 EDT
+"trajectory_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Mar 31 14:48 EDT

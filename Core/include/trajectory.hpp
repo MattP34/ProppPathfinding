@@ -30,10 +30,10 @@ struct Kinematics2
 struct MotionState
 {
     public:
-        double time,x,y,angle,xVel,yVel,omega,accel,alpha;
+        double time,x,y,angle,xVel,yVel,omega,accel,alpha,disp;
 
         MotionState();
-        MotionState(double time, double x,double y,double angle,double xVel,double yVel,double omega,double accel,double alpha);
+        MotionState(double time, double x,double y,double angle,double xVel,double yVel,double omega,double accel,double alpha,double disp);
 
         double getSpeed();
         double getAccel();
@@ -50,13 +50,14 @@ class Trajectory
         vector<MotionState> profile;
         vector<vector<MotionState> > storedProfiles;
         vector<double> keyPointVelocity;
+        vector<double> keyPointDisplacement;
 
         double findPointDCurvature(double val, double start, double end, double findSize);
         double getVelocityOnCurve(double u);
         double getTangentialAccelLeft(double u, double velocity);
         void findKeyPoints(double iterateSize, double findSize, double initialVelocity, double finalVelocity);
         int profileBetweenPoints(int startIndex, double iterationTime, double integralColumns);
-        void iterate(vector<MotionState> &p, double &u1, double &u2, bool reversed, double iterationTime, double integralColumns);
+        void iterate(vector<MotionState> &p, double &u1, double &u2, bool reversed, double iterationTime, double integralColumns,double &prevDisp);
 
     public:
         Trajectory();

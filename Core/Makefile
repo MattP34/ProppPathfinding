@@ -56,6 +56,17 @@ CMAKE_BINARY_DIR = /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/Applications/CMake.app/Contents/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -77,17 +88,6 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/Applications/CMake.app/Contents/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -120,6 +120,32 @@ preinstall/fast:
 depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
+
+#=============================================================================
+# Target rules for targets named quintic_test
+
+# Build rule for target.
+quintic_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 quintic_test
+.PHONY : quintic_test
+
+# fast build rule for target.
+quintic_test/fast:
+	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/build
+.PHONY : quintic_test/fast
+
+#=============================================================================
+# Target rules for targets named pathfinding
+
+# Build rule for target.
+pathfinding: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pathfinding
+.PHONY : pathfinding
+
+# fast build rule for target.
+pathfinding/fast:
+	$(MAKE) -f CMakeFiles/pathfinding.dir/build.make CMakeFiles/pathfinding.dir/build
+.PHONY : pathfinding/fast
 
 #=============================================================================
 # Target rules for targets named trajectory_test
@@ -160,18 +186,110 @@ spline_constructor_test/fast:
 	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/build
 .PHONY : spline_constructor_test/fast
 
-#=============================================================================
-# Target rules for targets named quintic_test
+src/io_helpers.o: src/io_helpers.cpp.o
 
-# Build rule for target.
-quintic_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 quintic_test
-.PHONY : quintic_test
+.PHONY : src/io_helpers.o
 
-# fast build rule for target.
-quintic_test/fast:
-	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/build
-.PHONY : quintic_test/fast
+# target to build an object file
+src/io_helpers.cpp.o:
+	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/io_helpers.cpp.o
+	$(MAKE) -f CMakeFiles/pathfinding.dir/build.make CMakeFiles/pathfinding.dir/src/io_helpers.cpp.o
+	$(MAKE) -f CMakeFiles/trajectory_test.dir/build.make CMakeFiles/trajectory_test.dir/src/io_helpers.cpp.o
+	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/src/io_helpers.cpp.o
+	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/io_helpers.cpp.o
+.PHONY : src/io_helpers.cpp.o
+
+src/io_helpers.i: src/io_helpers.cpp.i
+
+.PHONY : src/io_helpers.i
+
+# target to preprocess a source file
+src/io_helpers.cpp.i:
+	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/io_helpers.cpp.i
+	$(MAKE) -f CMakeFiles/pathfinding.dir/build.make CMakeFiles/pathfinding.dir/src/io_helpers.cpp.i
+	$(MAKE) -f CMakeFiles/trajectory_test.dir/build.make CMakeFiles/trajectory_test.dir/src/io_helpers.cpp.i
+	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/src/io_helpers.cpp.i
+	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/io_helpers.cpp.i
+.PHONY : src/io_helpers.cpp.i
+
+src/io_helpers.s: src/io_helpers.cpp.s
+
+.PHONY : src/io_helpers.s
+
+# target to generate assembly for a file
+src/io_helpers.cpp.s:
+	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/io_helpers.cpp.s
+	$(MAKE) -f CMakeFiles/pathfinding.dir/build.make CMakeFiles/pathfinding.dir/src/io_helpers.cpp.s
+	$(MAKE) -f CMakeFiles/trajectory_test.dir/build.make CMakeFiles/trajectory_test.dir/src/io_helpers.cpp.s
+	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/src/io_helpers.cpp.s
+	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/io_helpers.cpp.s
+.PHONY : src/io_helpers.cpp.s
+
+src/main.o: src/main.cpp.o
+
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) -f CMakeFiles/pathfinding.dir/build.make CMakeFiles/pathfinding.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) -f CMakeFiles/pathfinding.dir/build.make CMakeFiles/pathfinding.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) -f CMakeFiles/pathfinding.dir/build.make CMakeFiles/pathfinding.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
+src/math_util.o: src/math_util.cpp.o
+
+.PHONY : src/math_util.o
+
+# target to build an object file
+src/math_util.cpp.o:
+	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/math_util.cpp.o
+	$(MAKE) -f CMakeFiles/pathfinding.dir/build.make CMakeFiles/pathfinding.dir/src/math_util.cpp.o
+	$(MAKE) -f CMakeFiles/trajectory_test.dir/build.make CMakeFiles/trajectory_test.dir/src/math_util.cpp.o
+	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/src/math_util.cpp.o
+	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/math_util.cpp.o
+.PHONY : src/math_util.cpp.o
+
+src/math_util.i: src/math_util.cpp.i
+
+.PHONY : src/math_util.i
+
+# target to preprocess a source file
+src/math_util.cpp.i:
+	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/math_util.cpp.i
+	$(MAKE) -f CMakeFiles/pathfinding.dir/build.make CMakeFiles/pathfinding.dir/src/math_util.cpp.i
+	$(MAKE) -f CMakeFiles/trajectory_test.dir/build.make CMakeFiles/trajectory_test.dir/src/math_util.cpp.i
+	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/src/math_util.cpp.i
+	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/math_util.cpp.i
+.PHONY : src/math_util.cpp.i
+
+src/math_util.s: src/math_util.cpp.s
+
+.PHONY : src/math_util.s
+
+# target to generate assembly for a file
+src/math_util.cpp.s:
+	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/math_util.cpp.s
+	$(MAKE) -f CMakeFiles/pathfinding.dir/build.make CMakeFiles/pathfinding.dir/src/math_util.cpp.s
+	$(MAKE) -f CMakeFiles/trajectory_test.dir/build.make CMakeFiles/trajectory_test.dir/src/math_util.cpp.s
+	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/src/math_util.cpp.s
+	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/math_util.cpp.s
+.PHONY : src/math_util.cpp.s
 
 src/spline.o: src/spline.cpp.o
 
@@ -179,10 +297,11 @@ src/spline.o: src/spline.cpp.o
 
 # target to build an object file
 src/spline.cpp.o:
+	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/spline.cpp.o
+	$(MAKE) -f CMakeFiles/pathfinding.dir/build.make CMakeFiles/pathfinding.dir/src/spline.cpp.o
 	$(MAKE) -f CMakeFiles/trajectory_test.dir/build.make CMakeFiles/trajectory_test.dir/src/spline.cpp.o
 	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/src/spline.cpp.o
 	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/spline.cpp.o
-	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/spline.cpp.o
 .PHONY : src/spline.cpp.o
 
 src/spline.i: src/spline.cpp.i
@@ -191,10 +310,11 @@ src/spline.i: src/spline.cpp.i
 
 # target to preprocess a source file
 src/spline.cpp.i:
+	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/spline.cpp.i
+	$(MAKE) -f CMakeFiles/pathfinding.dir/build.make CMakeFiles/pathfinding.dir/src/spline.cpp.i
 	$(MAKE) -f CMakeFiles/trajectory_test.dir/build.make CMakeFiles/trajectory_test.dir/src/spline.cpp.i
 	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/src/spline.cpp.i
 	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/spline.cpp.i
-	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/spline.cpp.i
 .PHONY : src/spline.cpp.i
 
 src/spline.s: src/spline.cpp.s
@@ -203,10 +323,11 @@ src/spline.s: src/spline.cpp.s
 
 # target to generate assembly for a file
 src/spline.cpp.s:
+	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/spline.cpp.s
+	$(MAKE) -f CMakeFiles/pathfinding.dir/build.make CMakeFiles/pathfinding.dir/src/spline.cpp.s
 	$(MAKE) -f CMakeFiles/trajectory_test.dir/build.make CMakeFiles/trajectory_test.dir/src/spline.cpp.s
 	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/src/spline.cpp.s
 	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/spline.cpp.s
-	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/spline.cpp.s
 .PHONY : src/spline.cpp.s
 
 src/trajectory.o: src/trajectory.cpp.o
@@ -215,10 +336,11 @@ src/trajectory.o: src/trajectory.cpp.o
 
 # target to build an object file
 src/trajectory.cpp.o:
+	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/trajectory.cpp.o
+	$(MAKE) -f CMakeFiles/pathfinding.dir/build.make CMakeFiles/pathfinding.dir/src/trajectory.cpp.o
 	$(MAKE) -f CMakeFiles/trajectory_test.dir/build.make CMakeFiles/trajectory_test.dir/src/trajectory.cpp.o
 	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/src/trajectory.cpp.o
 	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/trajectory.cpp.o
-	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/trajectory.cpp.o
 .PHONY : src/trajectory.cpp.o
 
 src/trajectory.i: src/trajectory.cpp.i
@@ -227,10 +349,11 @@ src/trajectory.i: src/trajectory.cpp.i
 
 # target to preprocess a source file
 src/trajectory.cpp.i:
+	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/trajectory.cpp.i
+	$(MAKE) -f CMakeFiles/pathfinding.dir/build.make CMakeFiles/pathfinding.dir/src/trajectory.cpp.i
 	$(MAKE) -f CMakeFiles/trajectory_test.dir/build.make CMakeFiles/trajectory_test.dir/src/trajectory.cpp.i
 	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/src/trajectory.cpp.i
 	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/trajectory.cpp.i
-	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/trajectory.cpp.i
 .PHONY : src/trajectory.cpp.i
 
 src/trajectory.s: src/trajectory.cpp.s
@@ -239,10 +362,11 @@ src/trajectory.s: src/trajectory.cpp.s
 
 # target to generate assembly for a file
 src/trajectory.cpp.s:
+	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/trajectory.cpp.s
+	$(MAKE) -f CMakeFiles/pathfinding.dir/build.make CMakeFiles/pathfinding.dir/src/trajectory.cpp.s
 	$(MAKE) -f CMakeFiles/trajectory_test.dir/build.make CMakeFiles/trajectory_test.dir/src/trajectory.cpp.s
 	$(MAKE) -f CMakeFiles/spline_math_test.dir/build.make CMakeFiles/spline_math_test.dir/src/trajectory.cpp.s
 	$(MAKE) -f CMakeFiles/spline_constructor_test.dir/build.make CMakeFiles/spline_constructor_test.dir/src/trajectory.cpp.s
-	$(MAKE) -f CMakeFiles/quintic_test.dir/build.make CMakeFiles/quintic_test.dir/src/trajectory.cpp.s
 .PHONY : src/trajectory.cpp.s
 
 test/quintic_test.o: test/quintic_test.cpp.o
@@ -359,13 +483,23 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... test"
+	@echo "... quintic_test"
+	@echo "... pathfinding"
 	@echo "... trajectory_test"
 	@echo "... rebuild_cache"
 	@echo "... spline_math_test"
 	@echo "... edit_cache"
 	@echo "... spline_constructor_test"
-	@echo "... test"
-	@echo "... quintic_test"
+	@echo "... src/io_helpers.o"
+	@echo "... src/io_helpers.i"
+	@echo "... src/io_helpers.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
+	@echo "... src/math_util.o"
+	@echo "... src/math_util.i"
+	@echo "... src/math_util.s"
 	@echo "... src/spline.o"
 	@echo "... src/spline.i"
 	@echo "... src/spline.s"

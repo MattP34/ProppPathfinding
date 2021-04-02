@@ -9,6 +9,10 @@
 /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/trajectory.cpp
 trajectory.hpp
 /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/trajectory.hpp
+math.h
+/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/math.h
+
+include/math_util.hpp
 
 include/spline.hpp
 vector
@@ -27,4 +31,6 @@ math.h
 include/math.h
 spline.hpp
 include/spline.hpp
+math_util.hpp
+include/math_util.hpp
 

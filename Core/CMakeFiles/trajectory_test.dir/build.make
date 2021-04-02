@@ -96,11 +96,39 @@ CMakeFiles/trajectory_test.dir/src/trajectory.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/trajectory_test.dir/src/trajectory.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/trajectory.cpp -o CMakeFiles/trajectory_test.dir/src/trajectory.cpp.s
 
+CMakeFiles/trajectory_test.dir/src/math_util.cpp.o: CMakeFiles/trajectory_test.dir/flags.make
+CMakeFiles/trajectory_test.dir/src/math_util.cpp.o: src/math_util.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/trajectory_test.dir/src/math_util.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/trajectory_test.dir/src/math_util.cpp.o -c /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/math_util.cpp
+
+CMakeFiles/trajectory_test.dir/src/math_util.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/trajectory_test.dir/src/math_util.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/math_util.cpp > CMakeFiles/trajectory_test.dir/src/math_util.cpp.i
+
+CMakeFiles/trajectory_test.dir/src/math_util.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/trajectory_test.dir/src/math_util.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/math_util.cpp -o CMakeFiles/trajectory_test.dir/src/math_util.cpp.s
+
+CMakeFiles/trajectory_test.dir/src/io_helpers.cpp.o: CMakeFiles/trajectory_test.dir/flags.make
+CMakeFiles/trajectory_test.dir/src/io_helpers.cpp.o: src/io_helpers.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/trajectory_test.dir/src/io_helpers.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/trajectory_test.dir/src/io_helpers.cpp.o -c /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/io_helpers.cpp
+
+CMakeFiles/trajectory_test.dir/src/io_helpers.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/trajectory_test.dir/src/io_helpers.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/io_helpers.cpp > CMakeFiles/trajectory_test.dir/src/io_helpers.cpp.i
+
+CMakeFiles/trajectory_test.dir/src/io_helpers.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/trajectory_test.dir/src/io_helpers.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/io_helpers.cpp -o CMakeFiles/trajectory_test.dir/src/io_helpers.cpp.s
+
 # Object files for target trajectory_test
 trajectory_test_OBJECTS = \
 "CMakeFiles/trajectory_test.dir/test/trajectory_test.cpp.o" \
 "CMakeFiles/trajectory_test.dir/src/spline.cpp.o" \
-"CMakeFiles/trajectory_test.dir/src/trajectory.cpp.o"
+"CMakeFiles/trajectory_test.dir/src/trajectory.cpp.o" \
+"CMakeFiles/trajectory_test.dir/src/math_util.cpp.o" \
+"CMakeFiles/trajectory_test.dir/src/io_helpers.cpp.o"
 
 # External object files for target trajectory_test
 trajectory_test_EXTERNAL_OBJECTS =
@@ -108,9 +136,11 @@ trajectory_test_EXTERNAL_OBJECTS =
 trajectory_test: CMakeFiles/trajectory_test.dir/test/trajectory_test.cpp.o
 trajectory_test: CMakeFiles/trajectory_test.dir/src/spline.cpp.o
 trajectory_test: CMakeFiles/trajectory_test.dir/src/trajectory.cpp.o
+trajectory_test: CMakeFiles/trajectory_test.dir/src/math_util.cpp.o
+trajectory_test: CMakeFiles/trajectory_test.dir/src/io_helpers.cpp.o
 trajectory_test: CMakeFiles/trajectory_test.dir/build.make
 trajectory_test: CMakeFiles/trajectory_test.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable trajectory_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable trajectory_test"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/trajectory_test.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

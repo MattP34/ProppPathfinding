@@ -9,6 +9,7 @@ int main(int argc, char **argv) {
     string saveFile = argv[3];
     Spline spline = csvToSpline(loadFile);
     Kinematics kinematics = csvToKinematics(configFile); //might add other configurationns
+    cout << kinematics.vMax << endl;
     Trajectory traj = Trajectory(spline, kinematics);
     traj.calculate(.01,.0001);
     saveTrajectory(traj, saveFile);

@@ -4,6 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/io_helpers.cpp" "/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles/spline_constructor_test.dir/src/io_helpers.cpp.o"
+  "/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/math_util.cpp" "/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles/spline_constructor_test.dir/src/math_util.cpp.o"
   "/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/spline.cpp" "/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles/spline_constructor_test.dir/src/spline.cpp.o"
   "/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/trajectory.cpp" "/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles/spline_constructor_test.dir/src/trajectory.cpp.o"
   "/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/test/spline_constructor_test.cpp" "/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles/spline_constructor_test.dir/test/spline_constructor_test.cpp.o"

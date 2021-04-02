@@ -96,11 +96,39 @@ CMakeFiles/quintic_test.dir/src/trajectory.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/quintic_test.dir/src/trajectory.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/trajectory.cpp -o CMakeFiles/quintic_test.dir/src/trajectory.cpp.s
 
+CMakeFiles/quintic_test.dir/src/math_util.cpp.o: CMakeFiles/quintic_test.dir/flags.make
+CMakeFiles/quintic_test.dir/src/math_util.cpp.o: src/math_util.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/quintic_test.dir/src/math_util.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/quintic_test.dir/src/math_util.cpp.o -c /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/math_util.cpp
+
+CMakeFiles/quintic_test.dir/src/math_util.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/quintic_test.dir/src/math_util.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/math_util.cpp > CMakeFiles/quintic_test.dir/src/math_util.cpp.i
+
+CMakeFiles/quintic_test.dir/src/math_util.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/quintic_test.dir/src/math_util.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/math_util.cpp -o CMakeFiles/quintic_test.dir/src/math_util.cpp.s
+
+CMakeFiles/quintic_test.dir/src/io_helpers.cpp.o: CMakeFiles/quintic_test.dir/flags.make
+CMakeFiles/quintic_test.dir/src/io_helpers.cpp.o: src/io_helpers.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/quintic_test.dir/src/io_helpers.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/quintic_test.dir/src/io_helpers.cpp.o -c /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/io_helpers.cpp
+
+CMakeFiles/quintic_test.dir/src/io_helpers.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/quintic_test.dir/src/io_helpers.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/io_helpers.cpp > CMakeFiles/quintic_test.dir/src/io_helpers.cpp.i
+
+CMakeFiles/quintic_test.dir/src/io_helpers.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/quintic_test.dir/src/io_helpers.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/src/io_helpers.cpp -o CMakeFiles/quintic_test.dir/src/io_helpers.cpp.s
+
 # Object files for target quintic_test
 quintic_test_OBJECTS = \
 "CMakeFiles/quintic_test.dir/test/quintic_test.cpp.o" \
 "CMakeFiles/quintic_test.dir/src/spline.cpp.o" \
-"CMakeFiles/quintic_test.dir/src/trajectory.cpp.o"
+"CMakeFiles/quintic_test.dir/src/trajectory.cpp.o" \
+"CMakeFiles/quintic_test.dir/src/math_util.cpp.o" \
+"CMakeFiles/quintic_test.dir/src/io_helpers.cpp.o"
 
 # External object files for target quintic_test
 quintic_test_EXTERNAL_OBJECTS =
@@ -108,9 +136,11 @@ quintic_test_EXTERNAL_OBJECTS =
 quintic_test: CMakeFiles/quintic_test.dir/test/quintic_test.cpp.o
 quintic_test: CMakeFiles/quintic_test.dir/src/spline.cpp.o
 quintic_test: CMakeFiles/quintic_test.dir/src/trajectory.cpp.o
+quintic_test: CMakeFiles/quintic_test.dir/src/math_util.cpp.o
+quintic_test: CMakeFiles/quintic_test.dir/src/io_helpers.cpp.o
 quintic_test: CMakeFiles/quintic_test.dir/build.make
 quintic_test: CMakeFiles/quintic_test.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable quintic_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/matthewpropp/Documents/Robotics/Season2021/Pathfinding/Core/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable quintic_test"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/quintic_test.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
