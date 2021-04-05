@@ -8,9 +8,10 @@ using namespace std;
 
 const double DEADBAND = 0.00001;
 
-bool splineCheck(Spline spline,double px0,double dx0,double ddx0,double px1,double dx1,double ddx1,
-    double px2,double dx2,double ddx2,double py0,double dy0,double ddy0,double py1,double dy1,double ddy1,
-    double py2,double dy2,double ddy2) {
+bool splineCheck(Spline spline, double px0, double dx0, double ddx0, double px1, double dx1, double ddx1,
+                 double px2, double dx2, double ddx2, double py0, double dy0, double ddy0, double py1, double dy1, double ddy1,
+                 double py2, double dy2, double ddy2)
+{
     if (abs(spline.getValueX(0) - px0) > DEADBAND)
     {
         cout << "test 1" << endl;
@@ -212,19 +213,21 @@ bool splineTest1()
     double px2 = .351, dx2 = -45.9, ddx2 = -0.435, py2 = 35, dy2 = -2.35, ddy2 = 3;
     spline.addSegment(Quintic(px0, dx0, ddx0, px1, dx1, ddx1), Quintic(py0, dy0, ddy0, py1, dy1, ddy1));
     spline.addSegment(Quintic(px1, dx1, ddx1, px2, dx2, ddx2), Quintic(py1, dy1, ddy1, py2, dy2, ddy2));
-    return splineCheck(spline,px0,dx0,ddx0,px1,dx1,ddx1,px2,dx2,ddx2,py0,dy0,ddy0,py1,dy1,ddy1,py2,dy2,ddy2);
+    return splineCheck(spline, px0, dx0, ddx0, px1, dx1, ddx1, px2, dx2, ddx2, py0, dy0, ddy0, py1, dy1, ddy1, py2, dy2, ddy2);
 }
 
-bool splineTest2() {
+bool splineTest2()
+{
     double px0 = 2, dx0 = -0.5, ddx0 = .75, py0 = -13, dy0 = 9.1, ddy0 = -6.2;
     double px1 = 1023, dx1 = -43, ddx1 = 0.84, py1 = 0, dy1 = -5, ddy1 = 3.25;
     double px2 = .351, dx2 = -45.9, ddx2 = -0.435, py2 = 35, dy2 = -2.35, ddy2 = 3;
     Spline spline = Spline(Quintic(px0, dx0, ddx0, px1, dx1, ddx1), Quintic(py0, dy0, ddy0, py1, dy1, ddy1));
     spline.addSegment(Quintic(px1, dx1, ddx1, px2, dx2, ddx2), Quintic(py1, dy1, ddy1, py2, dy2, ddy2));
-    return splineCheck(spline,px0,dx0,ddx0,px1,dx1,ddx1,px2,dx2,ddx2,py0,dy0,ddy0,py1,dy1,ddy1,py2,dy2,ddy2);
+    return splineCheck(spline, px0, dx0, ddx0, px1, dx1, ddx1, px2, dx2, ddx2, py0, dy0, ddy0, py1, dy1, ddy1, py2, dy2, ddy2);
 }
 
-bool splineTest3() {
+bool splineTest3()
+{
     double px0 = 2, dx0 = -0.5, ddx0 = .75, py0 = -13, dy0 = 9.1, ddy0 = -6.2;
     double px1 = 1023, dx1 = -43, ddx1 = 0.84, py1 = 0, dy1 = -5, ddy1 = 3.25;
     double px2 = .351, dx2 = -45.9, ddx2 = -0.435, py2 = 35, dy2 = -2.35, ddy2 = 3;
@@ -234,16 +237,18 @@ bool splineTest3() {
     piecewiseY.push_back(Quintic(py0, dy0, ddy0, py1, dy1, ddy1));
     piecewiseX.push_back(Quintic(px1, dx1, ddx1, px2, dx2, ddx2));
     piecewiseY.push_back(Quintic(py1, dy1, ddy1, py2, dy2, ddy2));
-    Spline spline = Spline(piecewiseX,piecewiseY);
-    return splineCheck(spline,px0,dx0,ddx0,px1,dx1,ddx1,px2,dx2,ddx2,py0,dy0,ddy0,py1,dy1,ddy1,py2,dy2,ddy2);
+    Spline spline = Spline(piecewiseX, piecewiseY);
+    return splineCheck(spline, px0, dx0, ddx0, px1, dx1, ddx1, px2, dx2, ddx2, py0, dy0, ddy0, py1, dy1, ddy1, py2, dy2, ddy2);
 }
 
-double xFromPolar(double r, double theta) {
-    return r*cos(theta);
+double xFromPolar(double r, double theta)
+{
+    return r * cos(theta);
 }
 
-double yFromPolar(double r, double theta) {
-    return r*sin(theta);
+double yFromPolar(double r, double theta)
+{
+    return r * sin(theta);
 }
 
 bool splineTest4()
@@ -252,24 +257,25 @@ bool splineTest4()
     double px0 = 2, py0 = -0.697, dr0 = 69.0, dtheta0 = 2.1, ddr0 = -.986, ddtheta0 = 0;
     double px1 = -37.2, py1 = 8.498, dr1 = 7, dtheta1 = .5, ddr1 = 9.7, ddtheta1 = 6;
     double px2 = 0, py2 = 98.9, dr2 = -.065, dtheta2 = 0, ddr2 = 3.7, ddtheta2 = 4.56;
-    spline.addSegment(WayPoint(px0,py0,dr0,dtheta0,ddr0,ddtheta0));
-    spline.addSegment(WayPoint(px1,py1,dr1,dtheta1,ddr1,ddtheta1));
-    spline.addSegment(WayPoint(px2,py2,dr2,dtheta2,ddr2,ddtheta2));
-    return splineCheck(spline,px0,xFromPolar(dr0,dtheta0),xFromPolar(ddr0,ddtheta0),px1,xFromPolar(dr1,dtheta1),xFromPolar(ddr1,ddtheta1),px2,xFromPolar(dr2,dtheta2),xFromPolar(ddr2,ddtheta2),
-        py0,yFromPolar(dr0,dtheta0),yFromPolar(ddr0,ddtheta0),py1,yFromPolar(dr1,dtheta1),yFromPolar(ddr1,ddtheta1),py2,yFromPolar(dr2,dtheta2),yFromPolar(ddr2,ddtheta2));
+    spline.addSegment(WayPoint(px0, py0, dr0, dtheta0, ddr0, ddtheta0));
+    spline.addSegment(WayPoint(px1, py1, dr1, dtheta1, ddr1, ddtheta1));
+    spline.addSegment(WayPoint(px2, py2, dr2, dtheta2, ddr2, ddtheta2));
+    return splineCheck(spline, px0, xFromPolar(dr0, dtheta0), xFromPolar(ddr0, ddtheta0), px1, xFromPolar(dr1, dtheta1), xFromPolar(ddr1, ddtheta1), px2, xFromPolar(dr2, dtheta2), xFromPolar(ddr2, ddtheta2),
+                       py0, yFromPolar(dr0, dtheta0), yFromPolar(ddr0, ddtheta0), py1, yFromPolar(dr1, dtheta1), yFromPolar(ddr1, ddtheta1), py2, yFromPolar(dr2, dtheta2), yFromPolar(ddr2, ddtheta2));
 }
 
-bool splineTest5() {
+bool splineTest5()
+{
     vector<WayPoint> wayPoints = vector<WayPoint>();
     double px0 = 2, py0 = -0.697, dr0 = 69.0, dtheta0 = 2.1, ddr0 = -.986, ddtheta0 = 0;
     double px1 = -37.2, py1 = 8.498, dr1 = 7, dtheta1 = .5, ddr1 = 9.7, ddtheta1 = 6;
     double px2 = 0, py2 = 98.9, dr2 = -.065, dtheta2 = 0, ddr2 = 3.7, ddtheta2 = 4.56;
-    wayPoints.push_back(WayPoint(px0,py0,dr0,dtheta0,ddr0,ddtheta0));
-    wayPoints.push_back(WayPoint(px1,py1,dr1,dtheta1,ddr1,ddtheta1));
-    wayPoints.push_back(WayPoint(px2,py2,dr2,dtheta2,ddr2,ddtheta2));
+    wayPoints.push_back(WayPoint(px0, py0, dr0, dtheta0, ddr0, ddtheta0));
+    wayPoints.push_back(WayPoint(px1, py1, dr1, dtheta1, ddr1, ddtheta1));
+    wayPoints.push_back(WayPoint(px2, py2, dr2, dtheta2, ddr2, ddtheta2));
     Spline spline = Spline(wayPoints);
-    return splineCheck(spline,px0,xFromPolar(dr0,dtheta0),xFromPolar(ddr0,ddtheta0),px1,xFromPolar(dr1,dtheta1),xFromPolar(ddr1,ddtheta1),px2,xFromPolar(dr2,dtheta2),xFromPolar(ddr2,ddtheta2),
-        py0,yFromPolar(dr0,dtheta0),yFromPolar(ddr0,ddtheta0),py1,yFromPolar(dr1,dtheta1),yFromPolar(ddr1,ddtheta1),py2,yFromPolar(dr2,dtheta2),yFromPolar(ddr2,ddtheta2));
+    return splineCheck(spline, px0, xFromPolar(dr0, dtheta0), xFromPolar(ddr0, ddtheta0), px1, xFromPolar(dr1, dtheta1), xFromPolar(ddr1, ddtheta1), px2, xFromPolar(dr2, dtheta2), xFromPolar(ddr2, ddtheta2),
+                       py0, yFromPolar(dr0, dtheta0), yFromPolar(ddr0, ddtheta0), py1, yFromPolar(dr1, dtheta1), yFromPolar(ddr1, ddtheta1), py2, yFromPolar(dr2, dtheta2), yFromPolar(ddr2, ddtheta2));
 }
 
 int main()
@@ -277,15 +283,25 @@ int main()
     if (splineTest1())
     {
         cout << "Test failed 1" << endl;
-    } else if (splineTest2()) {
+    }
+    else if (splineTest2())
+    {
         cout << "Test failed 2" << endl;
-    } else if (splineTest3()) {
+    }
+    else if (splineTest3())
+    {
         cout << "Test failed 3" << endl;
-    } else if (splineTest4()) {
+    }
+    else if (splineTest4())
+    {
         cout << "Test failed 4" << endl;
-    } else if (splineTest5()) {
+    }
+    else if (splineTest5())
+    {
         cout << "Test failed 5" << endl;
-    } else {
+    }
+    else
+    {
         cout << "Test passed" << endl;
     }
 }

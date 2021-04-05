@@ -9,7 +9,8 @@ using namespace std;
 struct WayPoint
 {
 private:
-    double x,y,dx,dy,ddx,ddy;
+    double x, y, dx, dy, ddx, ddy;
+
 public:
     WayPoint();
     WayPoint(double x, double y, double dr, double dtheta, double ddr, double ddtheta);
@@ -39,8 +40,8 @@ public:
 
     string getEquation();
 
-    static Quintic quinticXfromWayPoint(WayPoint start, WayPoint end); 
-    static Quintic quinticYfromWayPoint(WayPoint start, WayPoint end); 
+    static Quintic quinticXfromWayPoint(WayPoint start, WayPoint end);
+    static Quintic quinticYfromWayPoint(WayPoint start, WayPoint end);
 };
 
 class Spline
@@ -86,7 +87,7 @@ public:
     double getYVelocityComponent(double u);
     double getXAccelComponent(double u);
     double getYAccelComponent(double u);
-    
+
     double getDisplacement(double uInitial, double uFinal, double columns);
     double getUOfDisplacement(double uInitial, double target, double columnSize);
 
