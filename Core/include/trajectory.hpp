@@ -50,7 +50,7 @@ private:
     Spline spline;
     vector<double> keyPoints;
     vector<MotionState> profile;
-    vector<vector<MotionState>> storedProfiles;
+    vector<vector<MotionState> > storedProfiles;
     vector<double> keyPointVelocity;
     vector<double> keyPointDisplacement;
 

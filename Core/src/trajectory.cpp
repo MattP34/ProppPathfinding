@@ -94,7 +94,7 @@ Trajectory::Trajectory()
     this->spline = Spline();
     this->keyPoints = vector<double>();
     this->profile = vector<MotionState>();
-    this->storedProfiles = vector<vector<MotionState>>();
+    this->storedProfiles = vector<vector<MotionState> >();
     this->keyPointVelocity = vector<double>();
     this->keyPointDisplacement = vector<double>();
 }
@@ -107,7 +107,7 @@ Trajectory::Trajectory(Spline spline, Kinematics kinematics)
     this->spline = spline;
     this->keyPoints = vector<double>();
     this->profile = vector<MotionState>();
-    this->storedProfiles = vector<vector<MotionState>>();
+    this->storedProfiles = vector<vector<MotionState> >();
     this->keyPointVelocity = vector<double>();
     this->keyPointDisplacement = vector<double>();
 }
@@ -120,7 +120,7 @@ Trajectory::Trajectory(vector<WayPoint> wayPoints, Kinematics kinematics)
     this->spline = Spline(wayPoints);
     this->keyPoints = vector<double>();
     this->profile = vector<MotionState>();
-    this->storedProfiles = vector<vector<MotionState>>();
+    this->storedProfiles = vector<vector<MotionState> >();
     this->keyPointVelocity = vector<double>();
     this->keyPointDisplacement = vector<double>();
 }
@@ -133,7 +133,7 @@ Trajectory::Trajectory(Spline spline, Kinematics2 kinematics2)
     this->spline = spline;
     this->keyPoints = vector<double>();
     this->profile = vector<MotionState>();
-    this->storedProfiles = vector<vector<MotionState>>();
+    this->storedProfiles = vector<vector<MotionState> >();
     this->keyPointVelocity = vector<double>();
     this->keyPointDisplacement = vector<double>();
 }
@@ -146,7 +146,7 @@ Trajectory::Trajectory(vector<WayPoint> wayPoints, Kinematics2 kinematics2)
     this->spline = Spline(wayPoints);
     this->keyPoints = vector<double>();
     this->profile = vector<MotionState>();
-    this->storedProfiles = vector<vector<MotionState>>();
+    this->storedProfiles = vector<vector<MotionState> >();
     this->keyPointVelocity = vector<double>();
     this->keyPointDisplacement = vector<double>();
 }
