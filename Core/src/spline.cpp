@@ -492,3 +492,21 @@ string Spline::getEquations()
     }
     return str;
 }
+
+RotaryWayPoint::RotaryWayPoint() {
+    this->theta = 0.0;
+    this->used = false;
+}
+
+RotaryWayPoint::RotaryWayPoint(double theta, bool used) {
+    this->theta = theta;
+    this->used = used;
+}
+
+RotaryPath::RotaryPath() {
+    this->angles = vector<RotaryWayPoint>();
+}
+
+RotaryPath::RotaryPath(vector<RotaryWayPoint> angles) {
+    this->angles = angles;
+}

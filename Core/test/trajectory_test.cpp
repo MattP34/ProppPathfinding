@@ -17,7 +17,7 @@ bool keyPointsTest()
     double px1 = 10, py1 = 10, dr1 = 10, dtheta1 = 3.1415 / 2, ddr1 = 10, ddtheta1 = 3.1415 / 2;
     spline.addSegment(WayPoint(px0, py0, dr0, dtheta0, ddr0, ddtheta0));
     spline.addSegment(WayPoint(px1, py1, dr1, dtheta1, ddr1, ddtheta1));
-    Trajectory trajectory = Trajectory(spline, Kinematics(10.0, 8.0, 10, 10, 10));
+    Trajectory trajectory = Trajectory(spline, RotaryPath(), Kinematics(10.0, 8.0, 10, 10, 10));
     trajectory.calculate(.005, .0001);
     vector<double> v1 = trajectory.getKeyPoints();
     try
@@ -47,7 +47,7 @@ bool generationTest()
     double px1 = 10, py1 = 10, dr1 = 10, dtheta1 = 3.1415 / 2, ddr1 = 10, ddtheta1 = 3.1415 / 2;
     spline.addSegment(WayPoint(px0, py0, dr0, dtheta0, ddr0, ddtheta0));
     spline.addSegment(WayPoint(px1, py1, dr1, dtheta1, ddr1, ddtheta1));
-    Trajectory trajectory = Trajectory(spline, Kinematics(8.0, 1.0, 5.0, 1, 4.0));
+    Trajectory trajectory = Trajectory(spline, RotaryPath(), Kinematics(8.0, 1.0, 5.0, 1, 4.0));
     trajectory.calculate(.005, .0001);
     return false;
 }
