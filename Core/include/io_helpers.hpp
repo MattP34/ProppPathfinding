@@ -5,10 +5,13 @@
 
 using namespace std;
 
-Spline csvToSpline(string filename);
+vector<vector<double> > csvToSpline(string filename);
 
 Kinematics csvToKinematics(string filename);
 
 Kinematics2 csvToKinematics2(string filename);
 
-void saveTrajectory(Trajectory &trajectory, string filename);
+RotaryPath csvToRotaryPath(string filename);
+
+void saveTrajectory(vector<MotionState>* profile, string filename);
+void saveWayPoints(vector<vector<double> > wayPoints, string filename);

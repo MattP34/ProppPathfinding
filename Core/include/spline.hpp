@@ -1,5 +1,5 @@
-#include "vector"
-#include "string"
+#include <vector>
+#include <string>
 
 #ifndef SPLINE_HPP
 #define SPLINE_HPP
@@ -97,6 +97,21 @@ public:
     double getAccelForCurve(double u);
 
     string getEquations();
+};
+
+class RotaryWayPoint {
+    public:
+        double theta;
+        bool used;
+        RotaryWayPoint();
+        RotaryWayPoint(double theta, bool used);
+};
+
+class RotaryPath {
+    public: 
+        vector<RotaryWayPoint> angles;
+        RotaryPath();
+        RotaryPath(vector<RotaryWayPoint> angles);
 };
 
 #endif

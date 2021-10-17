@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Pathfinding"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test">
+				<Option working_dir="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 test"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="quintic_test">
+				<Option output="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/quintic_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/alexlatz/Documents/Pathfinding/Core/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 quintic_test"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="quintic_test/fast">
+				<Option output="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/quintic_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/alexlatz/Documents/Pathfinding/Core/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 quintic_test/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="pathfinding">
+				<Option output="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/pathfinding" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/alexlatz/Documents/Pathfinding/Core/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 pathfinding"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="pathfinding/fast">
+				<Option output="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/pathfinding" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/alexlatz/Documents/Pathfinding/Core/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 pathfinding/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="trajectory_test">
+				<Option output="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/trajectory_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/alexlatz/Documents/Pathfinding/Core/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 trajectory_test"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="trajectory_test/fast">
+				<Option output="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/trajectory_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/alexlatz/Documents/Pathfinding/Core/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 trajectory_test/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="spline_math_test">
+				<Option output="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/spline_math_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/alexlatz/Documents/Pathfinding/Core/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 spline_math_test"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="spline_math_test/fast">
+				<Option output="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/spline_math_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/alexlatz/Documents/Pathfinding/Core/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 spline_math_test/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="spline_constructor_test">
+				<Option output="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/spline_constructor_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/alexlatz/Documents/Pathfinding/Core/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 spline_constructor_test"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="spline_constructor_test/fast">
+				<Option output="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/spline_constructor_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/alexlatz/Documents/Pathfinding/Core/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 spline_constructor_test/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alexlatz/Documents/Pathfinding/Core/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/alexlatz/Documents/Pathfinding/Core/src/io_helpers.cpp">
+			<Option target="quintic_test"/>
+			<Option target="pathfinding"/>
+			<Option target="trajectory_test"/>
+			<Option target="spline_math_test"/>
+			<Option target="spline_constructor_test"/>
+		</Unit>
+		<Unit filename="/Users/alexlatz/Documents/Pathfinding/Core/src/main.cpp">
+			<Option target="pathfinding"/>
+		</Unit>
+		<Unit filename="/Users/alexlatz/Documents/Pathfinding/Core/src/math_util.cpp">
+			<Option target="quintic_test"/>
+			<Option target="pathfinding"/>
+			<Option target="trajectory_test"/>
+			<Option target="spline_math_test"/>
+			<Option target="spline_constructor_test"/>
+		</Unit>
+		<Unit filename="/Users/alexlatz/Documents/Pathfinding/Core/src/spline.cpp">
+			<Option target="quintic_test"/>
+			<Option target="pathfinding"/>
+			<Option target="trajectory_test"/>
+			<Option target="spline_math_test"/>
+			<Option target="spline_constructor_test"/>
+		</Unit>
+		<Unit filename="/Users/alexlatz/Documents/Pathfinding/Core/src/trajectory.cpp">
+			<Option target="quintic_test"/>
+			<Option target="pathfinding"/>
+			<Option target="trajectory_test"/>
+			<Option target="spline_math_test"/>
+			<Option target="spline_constructor_test"/>
+		</Unit>
+		<Unit filename="/Users/alexlatz/Documents/Pathfinding/Core/test/quintic_test.cpp">
+			<Option target="quintic_test"/>
+		</Unit>
+		<Unit filename="/Users/alexlatz/Documents/Pathfinding/Core/test/spline_constructor_test.cpp">
+			<Option target="spline_constructor_test"/>
+		</Unit>
+		<Unit filename="/Users/alexlatz/Documents/Pathfinding/Core/test/spline_math_test.cpp">
+			<Option target="spline_math_test"/>
+		</Unit>
+		<Unit filename="/Users/alexlatz/Documents/Pathfinding/Core/test/trajectory_test.cpp">
+			<Option target="trajectory_test"/>
+		</Unit>
+		<Unit filename="/Users/alexlatz/Documents/Pathfinding/Core/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

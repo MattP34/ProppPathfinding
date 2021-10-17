@@ -1,5 +1,5 @@
 #include "trajectory.hpp"
-#include "math.h"
+#include <math.h>
 #include "io_helpers.hpp"
 
 double run(char **argv, vector<vector<double> > allPoints, RotaryPath rotaryPath, bool save=true, double iterationSize = 0.01, double findSize = 0.0001) {

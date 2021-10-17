@@ -12,4 +12,16 @@ public:
 
 bool sgn(double x);
 
+class PieceWise {
+    vector<double> points;
+    vector<double> values;
+    vector<double> disp;
+    vector<double> angles;
+    public:
+        PieceWise();
+        PieceWise(vector<double> points, vector<double> values, vector<double> disp, vector<double> angles);
+        double getValue(double x);
+        double getAngle(double currDisp);
+};
+
 #endif
