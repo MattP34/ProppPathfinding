@@ -1,5 +1,6 @@
 #ifndef MATH_UTIL_HPP
 #define MATH_UTIL_HPP
+using namespace std;
 
 struct Point
 {
