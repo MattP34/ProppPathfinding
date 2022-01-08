@@ -1,8 +1,10 @@
 #include "trajectory.hpp"
-#include <math.h>
 #include "io_helpers.hpp"
+#include <math.h>
+#include <cstdio>
+#include <ctime>
 
-double run(char **argv, vector<vector<double> > allPoints, RotaryPath rotaryPath, bool save=true, double iterationSize = 0.01, double findSize = 0.00000001) {
+double run(char **argv, vector<vector<double> > allPoints, RotaryPath rotaryPath, bool save=true, double iterationSize = 0.01, double findSize = 0.00001) {
     string configFile = argv[1];
     string loadFile = argv[3];
     string saveFile = argv[4];
@@ -92,7 +94,12 @@ int main(int argc, char **argv)
     vector<vector<double> > spline = csvToSpline(loadFile);
     RotaryPath rotaryPath = csvToRotaryPath(loadFile);
     if(argc <= 5 || argv[5][0] == 'f') {
+        clock_t start;
+        double duration;
+        start = clock();
         run(argv, spline, rotaryPath);
+        duration = (clock() - start ) / (double) CLOCKS_PER_SEC;
+        cout << "Seconds: "<< duration <<'\n';
     } else {
         tune(argv, spline, rotaryPath);
     }
