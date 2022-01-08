@@ -1,3 +1,9 @@
+/**
+ * @file math_util.hpp
+ * @author Matthew Propp34 (https://github.com/MattP34)
+ * @brief Defines math operations including points and the rotation piecewise class.
+ * @version 0.1
+ */
 #include "vector"
 #include "math.h"
 #include "math_util.hpp"
@@ -18,19 +24,19 @@ bool sgn(double x)
     return false;
 }
 
-PieceWise::PieceWise() {
+RotationPieceWise::RotationPieceWise() {
     this->points = vector<double>();
     this->values = vector<double>();
 }
 
-PieceWise::PieceWise(vector<double> points, vector<double> values, vector<double> disp, vector<double> angles) {
+RotationPieceWise::RotationPieceWise(vector<double> points, vector<double> values, vector<double> disp, vector<double> angles) {
     this->points = points;
     this->values = values;
     this->disp = disp;
     this->angles = angles;
 }
 
-double PieceWise::getValue(double x) {
+double RotationPieceWise::getValue(double x) {
     for(int i = 0; i < this->points.size()-1; i++) {
         if(x < this->points.at(i)) {
             return this->values.at(i);
@@ -40,7 +46,7 @@ double PieceWise::getValue(double x) {
     return this->values.at(this->values.size()-1);
 }
 
-double PieceWise::getAngle(double currDisp) {
+double RotationPieceWise::getAngle(double currDisp) {
     double prevDisp = -1, nextDisp = -1;
     double prev = 0.0, next = 0.0;
     if(this->disp.size() <= 1) {

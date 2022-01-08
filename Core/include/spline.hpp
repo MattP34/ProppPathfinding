@@ -1,3 +1,10 @@
+/**
+ * @file spline.hpp
+ * @author Matthew Propp34 (https://github.com/MattP34)
+ * @brief Defines the functionality for quintic hermite splines and paths of rotation.
+ * @version 0.1
+ * 
+ */
 #include <vector>
 #include <string>
 
@@ -6,6 +13,9 @@
 
 using namespace std;
 
+/**
+ * Struct representing a single waypoint for defining splines
+ */
 struct WayPoint
 {
 private:

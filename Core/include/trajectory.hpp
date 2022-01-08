@@ -1,3 +1,9 @@
+/**
+ * @file trajectory.hpp
+ * @author Matthew Propp34 (https://github.com/MattP34)
+ * @brief Defines Trajectory generating classes and kinematic classes.
+ * @version 0.1
+ */
 #include <vector>
 #include <string>
 #include <iostream>
@@ -9,6 +15,10 @@
 #ifndef TRAJECTORY_HPP
 #define TRAJECTORY_HPP
 
+/**
+ * Class defining the kinematics of the robot.
+ * @deprecated Kinematics is not guarenteed to work. Use Kinematics2 instead
+ */
 struct Kinematics
 {
 public:
@@ -18,6 +28,9 @@ public:
     Kinematics(double vMax, double omegaMax, double aMax, double alphaMax, double aCentrMax);
 };
 
+/**
+ * Class defining the kinematics of the robot.
+ */
 struct Kinematics2
 {
 public:
@@ -42,6 +55,10 @@ public:
     string toString();
 };
 
+/**
+ * Class to calculate the trajectory of the robot.
+ * @deprecated Trajectory is not guarenteed to work. Use Trajectory2 instead.
+ */
 class Trajectory
 {
 private:
@@ -87,12 +104,12 @@ class Trajectory2 {
     vector<vector<MotionState> > storedProfiles;
     vector<double> keyPointVelocity;
     vector<double> keyPointDisplacement;
-    PieceWise rotationPercentage;
+    RotationPieceWise rotationPercentage;
     public:
         Trajectory2();
         Trajectory2(Spline spline, RotaryPath rotaryPath, Kinematics2 kinematics2);
         Trajectory2(vector<WayPoint> wayPoints, RotaryPath rotaryPath, Kinematics2 kinematics2);
-        double findPointDCurvature(double val, double start, double end, double findSize);
+        double findPointDRadius(double val, double start, double end, double findSize);
         void findKeyPoints(double iterateSize, double findSize, double initialVelocity, double finalVelocity);
         double getRotationPercentage(double startAngle, double endAngle, double startDisp, double endDisp);
         void findRotationPercentage(double columns);

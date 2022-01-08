@@ -1,3 +1,9 @@
+/**
+ * @file spline.hpp
+ * @author Matthew Propp34 (https://github.com/MattP34)
+ * @brief Defines the functionality for quintic hermite splines and paths of rotation.
+ * @version 0.1
+ */
 #include "vector"
 #include "string"
 #include "iostream"
@@ -434,9 +440,11 @@ double Spline::getDRadius(double u)
     this->getJerkPoint(u, outputArray);
     dddx = outputArray[0];
     dddy = outputArray[1];
+    //old old math
     //double top1 = -6*pow(dy*ddx-dx*ddy,2)*(dx*ddx+dy*ddy);
     //double top2 = 2*(pow(dx,2)+pow(dy,2))*(-dy*ddx+dx*ddy)*(-dy*dddx+dx*dddy);
     //double bottom = 2*pow(pow(dx,2)+pow(dy,2),5.0/2.0)*sqrt(pow(dy*ddx-dx*ddy,2));
+    
     double top1 = sqrt(pow(dx, 2) + pow(dy, 2));
     double top2 = pow(dy * ddx - dx * ddy, 2) * (dx * ddx + dy * ddy);
     double top3 = 2 * (pow(dx, 2) + pow(dy, 2)) * (-dy * ddx + dx * ddy) * (-dy * dddx + dx * dddy);
@@ -460,7 +468,8 @@ double Spline::getDDRadius(double u)
     this->getFourthPoint(u, outputArray);
     ddddx = outputArray[0];
     ddddy = outputArray[1];
-    double top1 = -6 * (pow(dx, 2) + pow(dy, 2)) * (-dy * ddx + dx * ddy) * (dx * ddx + dy * ddy) * (-dy * dddx + dx * dddy);
+    //old math
+    double top1 = -6 * (pow(dx, 2) + pow(dy, 2)) * (dx * ddy - dy * ddx) * (dx * ddx + dy * ddy) * (-dy * dddx + dx * dddy);
     double top2 = 3 * pow(dy * ddx - dx * ddy, 2) * (pow(dx * ddx + dy * ddy, 2) + ((pow(dx, 2) + pow(dy, 2)) * (pow(ddx, 2) + pow(ddy, 2) + dx * dddx + dy + dddy)));
     double top3 = pow(pow(dx, 2) + pow(dy, 2), 2);
     double top4 = (2 * pow(dy * dddx - dx * dddy, 2) - ((dy * ddx - dx * ddy) * (ddy * dddx - ddx * dddy + dy * ddddx - dx * ddddy)));

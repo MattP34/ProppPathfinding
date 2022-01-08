@@ -1,6 +1,13 @@
+/**
+ * @file trajectory.hpp
+ * @author Matthew Propp34 (https://github.com/MattP34)
+ * @brief Defines Trajectory generating classes and kinematic classes.
+ * @version 0.1
+ */
 #include "trajectory.hpp"
 #include "math.h"
 
+//Defining the constructors, nothing complicated here
 Kinematics::Kinematics()
 {
     this->vMax = 0;
@@ -10,6 +17,21 @@ Kinematics::Kinematics()
     this->aCentrMax = 0;
 }
 
+/**
+ * Construct a new Kinematics object.
+ * Note that units don't matter as long as they are consistent.
+ * For example use m/s for vMax, m/s^2 for aMax, and m/s^2 for aCentrMax.
+ * All angle measurments should be in radians with the same time unit as the rest.
+ * For the example above, omegaMax should be in rad/s, and alphaMax should be in rad/s^2.
+ * 
+ * @param vMax the maximium velocity
+ * @param omegaMax the maximium rotational velocity
+ * @param aMax the maximium tangential acceleration
+ * @param alphaMax the maximium rotational acceleration
+ * @param aCentrMax the maxiumium centripetal acceleration before sliding
+ * 
+ * @deprecated no longer supported, use Kinematics2 instead
+ */
 Kinematics::Kinematics(double vMax, double omegaMax, double aMax, double alphaMax, double aCentrMax)
 {
     this->vMax = vMax;
@@ -31,6 +53,21 @@ Kinematics2::Kinematics2()
     this->aCentrMax = 0.0;
 }
 
+/**
+ * Construct a new Kinematics2 object.
+ * Units don't matter as long as they are consistent.
+ * For example use Volts for voltage Max, Volts for KS, Volts/(m/s) for kV, Volts/(m/s^2) for KA,
+ * m/s^2 for aMax, meters for robot width and length, and m/s^2 for aCentrMax.
+ * 
+ * @param voltageMax the maximium voltage available to be used by motors
+ * @param kS KS contant of the motor equation
+ * @param kV KV contant of the motor equation
+ * @param kA KA contant of the motor equation
+ * @param aMax the maximium tangential acceleration before wheel slipage
+ * @param robotWidth the robot width
+ * @param robotLength the robot length
+ * @param aCentrMax the maximium centripetal acceleration before sliding
+ */
 Kinematics2::Kinematics2(double voltageMax, double kS, double kV, double kA, double aMax, double robotWidth, double robotLength, double aCentrMax)
 {
     this->voltageMax = voltageMax;
@@ -55,6 +92,21 @@ MotionState::MotionState()
     this->accel = 0;
 }
 
+//TODO double check purpose of rotation percentage
+
+/**
+ * Constructs a new MotionState object.
+ * 
+ * @param time the time
+ * @param x the x position
+ * @param y the y position
+ * @param angle the angle the robot is facing
+ * @param xVel the x velocity
+ * @param yVel the y velocity
+ * @param rotationPercentage the percentage of velocity that is going towards rotating the robot
+ * @param accel the current tangential acceleration
+ * @param disp the current displacement along the spline
+ */
 MotionState::MotionState(double time, double x, double y, double angle, double xVel, double yVel, double rotationPercentage, double accel, double disp)
 {
     this->time = time;
@@ -383,20 +435,53 @@ Trajectory2::Trajectory2(vector<WayPoint> wayPoints, RotaryPath rotaryPath, Kine
     this->keyPointDisplacement = vector<double>();
 }
 
-double Trajectory2::findPointDCurvature(double val, double start, double end, double findSize)
+//TODO this function should be moved to the spline class
+/**
+ * Function used to find a specific derivate of the current radius of the curve of the spline.
+ * Note this function is mainly used for when it is know that the derivate of the radius crossed 0 in this range.
+ * 
+ * @param val the derivate value to look for
+ * @param start the input value of the spline function to start at
+ * @param end the input value of the spline function to end at
+ * @param findSize the iteration size used to find the point. In terms of the input value of the spline function.
+ * @return the first value of the spline function corresponding to the derivate of the radius searched for. Returns -1 if the function crosses the search value by going from inf to -inf or reversed. Returns the end value if not found.
+ */
+double Trajectory2::findPointDRadius(double val, double start, double end, double findSize)
 {
+    //find if the start derivate of the radius is above or below the searched value
     bool pos = sgn(this->spline.getDRadius(start) - val);
-    for (double u = start; u < end; u += findSize)
+    //loop to iterate forward along the spline
+    for (double u = start; u <= end; u += findSize)
     {
+        //if the current derivate of the radius is the same as the start, go to the next iteration
+        //the derivate of the radius has not yet reached the value
         if (pos == sgn(this->spline.getDRadius(u) - val))
             continue;
+        //the derivate of the radius has jumped over the value searched
+        //it either did this by being the value, or by going from inf to -inf or -inf to inf
+        //this checks to make sure the value is still heading in the right direction (if it went through infinities it would be doing the opposite)    
         if (pos == sgn(this->spline.getDDRadius(u)))
             return -1;
-        return u - findSize / 2.0; //this code is to linear estimate instead of middle u-((this->spline.getDCurvature(u)-this->spline.getDCurvature(u-findSize))
+        //uses a middle estimate to get the corresponding value for the spline function
+        return u - findSize / 2.0; 
+        //TODO add linear estimate instead of middle
     }
+    //check the end case for the infinity check
+    if (pos == sgn(this->spline.getDDRadius(end)))
+        return -1;
     return end;
 }
 
+/**
+ * Function used to find the key point along the spline path.
+ * Key points are points along the spline when reaches a turns apex or the local minimium for the radius of the curve.
+ * It shouldn't pick up local maximiums for the radius of the curve
+ * 
+ * @param iterateSize 
+ * @param findSize 
+ * @param initialVelocity 
+ * @param finalVelocity 
+ */
 void Trajectory2::findKeyPoints(double iterateSize, double findSize, double initialVelocity, double finalVelocity)
 {
     bool pos = sgn(this->spline.getDRadius(0));
@@ -409,20 +494,11 @@ void Trajectory2::findKeyPoints(double iterateSize, double findSize, double init
     for (double u = 0; u < this->spline.getLength(); u += iterateSize)
     {
         double val;
-        /*if((u > 1 && u-iterateSize <= 1) || (u > 2 && u-iterateSize <= 2) || (u > 3 && u-iterateSize <= 3)) {
-            val = (double)(int)u;
-            this->keyPoints.push_back(val);
-            this->keyPointVelocity.push_back(1.0);
-            this->keyPointDisplacement.push_back(this->keyPointDisplacement.at(this->keyPointDisplacement.size() - 1) + this->spline.getDisplacement(this->keyPoints.at(this->keyPoints.size() - 2), val, (val - this->keyPoints.at(this->keyPoints.size() - 2)) / iterateSize));
-            this->storedProfiles.push_back(vector<MotionState>());
-            this->storedProfiles.push_back(vector<MotionState>());
-            continue;
-        }*/
         if (pos == sgn(this->spline.getDRadius(u))) {
             continue;
         }
         pos = !pos;
-        val = findPointDCurvature(0, u - iterateSize, u, findSize);
+        val = findPointDRadius(0, u - iterateSize, u, findSize);
         if (val == -1) {
             continue;
         }
@@ -484,7 +560,7 @@ void Trajectory2::findRotationPercentage(double columns) {
             removed++;
         }
     }
-    this->rotationPercentage = PieceWise();
+    this->rotationPercentage = RotationPieceWise();
     if(vRotationPercentage.size() == 0) return;
     vector<double> points = vector<double>();
     vector<double> values = vector<double>();
@@ -499,7 +575,7 @@ void Trajectory2::findRotationPercentage(double columns) {
         }
     }
     points.push_back(this->spline.getLength());
-    this->rotationPercentage = PieceWise(points,values,wayPointDisp,angles);
+    this->rotationPercentage = RotationPieceWise(points,values,wayPointDisp,angles);
 }
 
 double Trajectory2::getVelocityOnCurve(double u)
@@ -553,8 +629,14 @@ double Trajectory2::getAccelKin(double velocity)
     return (this->kinematics.voltageMax - (this->kinematics.kS + velocity * this->kinematics.kV)) / this->kinematics.kA; //make sure veolcity is never negative
 }
 
-int counter = 0;
-
+/**
+ * Creates a motion profile for the spline between key points.
+ * 
+ * @param startIndex 
+ * @param iterationTime 
+ * @param integralColumns 
+ * @return int 
+ */
 int Trajectory2::profileBetweenPoints(int startIndex, double iterationTime, double integralColumns)
 {
     vector<MotionState> p1 = vector<MotionState>();
@@ -646,7 +728,8 @@ int Trajectory2::profileBetweenPoints(int startIndex, double iterationTime, doub
 void Trajectory2::calculate(double iterateSize, double findSize)
 {
     int returnVal = 0;
-    this->findKeyPoints(iterateSize, findSize, 0, (this->kinematics.voltageMax - this->kinematics.kS) / this->kinematics.kV);
+    //TODO final velocity is manually set to 0 here. It should be set someone else in the case it should be moving at the end.
+    this->findKeyPoints(iterateSize, findSize, 0, 0);
     this->findRotationPercentage(1/iterateSize);
     int counter = 0;
     for (int i = 0; i < this->keyPoints.size() - 1; i++)
@@ -655,6 +738,7 @@ void Trajectory2::calculate(double iterateSize, double findSize)
             MotionState temp = MotionState();
             temp.time = -1;
             this->profile.push_back(temp);
+            cerr << "Timeout on Profile Calculation" << endl;
             return;
         }
         returnVal = profileBetweenPoints(i, .001, 100);
