@@ -101,7 +101,7 @@ class Trajectory2 {
     RotaryPath rotaryPath;
     vector<double> keyPoints;
     vector<MotionState> profile;
-    vector<vector<MotionState> > storedProfiles;
+    vector<vector<MotionState>*> storedProfiles;
     vector<double> keyPointVelocity;
     vector<double> keyPointDisplacement;
     RotationPieceWise rotationPercentage;
@@ -109,6 +109,7 @@ class Trajectory2 {
         Trajectory2();
         Trajectory2(Spline spline, RotaryPath rotaryPath, Kinematics2 kinematics2);
         Trajectory2(vector<WayPoint> wayPoints, RotaryPath rotaryPath, Kinematics2 kinematics2);
+        ~Trajectory2();
         double findPointDRadius(double val, double start, double end, double findSize);
         void findKeyPoints(double iterateSize, double findSize, double initialVelocity, double finalVelocity);
         double getRotationPercentage(double startAngle, double endAngle, double startDisp, double endDisp);

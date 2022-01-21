@@ -406,7 +406,7 @@ Trajectory2::Trajectory2() {
     this->rotaryPath = RotaryPath();
     this->keyPoints = vector<double>();
     this->profile = vector<MotionState>();
-    this->storedProfiles = vector<vector<MotionState> >();
+    this->storedProfiles = vector<vector<MotionState>*>();
     this->keyPointVelocity = vector<double>();
     this->keyPointDisplacement = vector<double>();
 }
@@ -418,7 +418,7 @@ Trajectory2::Trajectory2(Spline spline, RotaryPath rotaryPath, Kinematics2 kinem
     this->rotaryPath = rotaryPath;
     this->keyPoints = vector<double>();
     this->profile = vector<MotionState>();
-    this->storedProfiles = vector<vector<MotionState> >();
+    this->storedProfiles = vector<vector<MotionState>*>();
     this->keyPointVelocity = vector<double>();
     this->keyPointDisplacement = vector<double>();
 }
@@ -430,9 +430,16 @@ Trajectory2::Trajectory2(vector<WayPoint> wayPoints, RotaryPath rotaryPath, Kine
     this->rotaryPath = rotaryPath;
     this->keyPoints = vector<double>();
     this->profile = vector<MotionState>();
-    this->storedProfiles = vector<vector<MotionState> >();
+    this->storedProfiles = vector<vector<MotionState>*>();
     this->keyPointVelocity = vector<double>();
     this->keyPointDisplacement = vector<double>();
+}
+
+Trajectory2::~Trajectory2() 
+{
+    for(int i = 0; i < this->storedProfiles.size(); i++) {
+        delete storedProfiles.at(i);
+    }
 }
 
 //TODO this function should be moved to the spline class
@@ -490,7 +497,7 @@ void Trajectory2::findKeyPoints(double iterateSize, double findSize, double init
     this->keyPoints.push_back(0);
     this->keyPointVelocity.push_back(initialVelocity);
     this->keyPointDisplacement.push_back(0);
-    this->storedProfiles.push_back(vector<MotionState>());
+    this->storedProfiles.push_back(new vector<MotionState>());
     for (double u = 0; u < this->spline.getLength(); u += iterateSize)
     {
         double val;
@@ -505,13 +512,13 @@ void Trajectory2::findKeyPoints(double iterateSize, double findSize, double init
         this->keyPoints.push_back(val);
         this->keyPointVelocity.push_back(min(getVelocityOnCurve(val), (this->kinematics.voltageMax - this->kinematics.kS) / this->kinematics.kV));
         this->keyPointDisplacement.push_back(this->keyPointDisplacement.at(this->keyPointDisplacement.size() - 1) + this->spline.getDisplacement(this->keyPoints.at(this->keyPoints.size() - 2), val, (val - this->keyPoints.at(this->keyPoints.size() - 2)) / iterateSize));
-        this->storedProfiles.push_back(vector<MotionState>());
-        this->storedProfiles.push_back(vector<MotionState>());
+        this->storedProfiles.push_back(new vector<MotionState>());
+        this->storedProfiles.push_back(new vector<MotionState>());
     }
     this->keyPoints.push_back(this->spline.getLength());
     this->keyPointVelocity.push_back(finalVelocity);
     this->keyPointDisplacement.push_back(this->keyPointDisplacement.at(this->keyPointDisplacement.size() - 1) + this->spline.getDisplacement(this->keyPoints.at(this->keyPoints.size() - 1), this->spline.getLength(), (this->spline.getLength() - this->keyPoints.at(this->keyPoints.size() - 1) / iterateSize)));
-    this->storedProfiles.push_back(vector<MotionState>());
+    this->storedProfiles.push_back(new vector<MotionState>());
 }
 
 double Trajectory2::getRotationPercentage(double startAngle, double endAngle, double startDisp, double endDisp) {
@@ -674,12 +681,12 @@ int Trajectory2::profileBetweenPoints(int startIndex, double iterationTime, doub
             iterate(p2, u2, u22, true, iterationTime, integralColumns, disp2);
         }
     }
-    this->storedProfiles.at(startIndex * 2).clear();
+    this->storedProfiles.at(startIndex * 2)->clear();
     if (p1.size() > 1 || (p2.size()<=1 && p1.at(0).getSpeed() < p2.at(0).getSpeed()))
     {
         for (int i = 0; i < p1.size(); i++)
         { //add to total profile
-            this->storedProfiles.at(startIndex * 2).push_back(p1.at(i));
+            this->storedProfiles.at(startIndex * 2)->push_back(p1.at(i));
         }
     }
     else
@@ -689,7 +696,7 @@ int Trajectory2::profileBetweenPoints(int startIndex, double iterationTime, doub
         prev = p2.at(p2.size() - 1);
         velocity = (prev.getSpeed() + prev.getAccel() * timeBetween);
         accel = min(getTangentialAccelLeft(u1, velocity), getAccelKin(velocity));
-        this->storedProfiles.at(startIndex * 2).push_back(MotionState(0, this->spline.getValueX(u1), this->spline.getValueY(u1), this->rotationPercentage.getAngle(disp1), velocity * this->spline.getXVelocityComponent(u1), velocity * this->spline.getYVelocityComponent(u1), this->rotationPercentage.getValue(u1), accel, this->keyPointDisplacement.at(startIndex)));
+        this->storedProfiles.at(startIndex * 2)->push_back(MotionState(0, this->spline.getValueX(u1), this->spline.getValueY(u1), this->rotationPercentage.getAngle(disp1), velocity * this->spline.getXVelocityComponent(u1), velocity * this->spline.getYVelocityComponent(u1), this->rotationPercentage.getValue(u1), accel, this->keyPointDisplacement.at(startIndex)));
         if (!((prev.getSpeed() * .99 <= this->keyPointVelocity.at(startIndex) && this->keyPointVelocity.at(startIndex) <= velocity * 1.01) || (prev.getSpeed() * 1.01 >= this->keyPointVelocity.at(startIndex) && this->keyPointVelocity.at(startIndex) >= velocity * 0.99)))
         {
             this->keyPointVelocity.at(startIndex) = velocity;
@@ -697,12 +704,12 @@ int Trajectory2::profileBetweenPoints(int startIndex, double iterationTime, doub
         }
         this->keyPointVelocity.at(startIndex) = velocity;
     }
-    this->storedProfiles.at(startIndex * 2 + 1).clear();
+    this->storedProfiles.at(startIndex * 2 + 1)->clear();
     if (p2.size() > 1)
     {
         for (int i = p2.size() - 1; i >= 0; i--)
         {
-            this->storedProfiles.at(startIndex * 2 + 1).push_back(p2.at(i));
+            this->storedProfiles.at(startIndex * 2 + 1)->push_back(p2.at(i));
         }
         //cout << "bye" << endl;
     }
@@ -713,7 +720,7 @@ int Trajectory2::profileBetweenPoints(int startIndex, double iterationTime, doub
         prev = p1.at(p1.size() - 1);
         velocity = (prev.getSpeed() + prev.getAccel() * timeBetween);
         accel = min(getTangentialAccelLeft(u2, velocity), getAccelKin(velocity));
-        this->storedProfiles.at(startIndex * 2 + 1).push_back(MotionState(0, this->spline.getValueX(u2), this->spline.getValueY(u2), this->rotationPercentage.getAngle(disp2), velocity * this->spline.getXVelocityComponent(u2), velocity * this->spline.getYVelocityComponent(u2), this->rotationPercentage.getValue(u2), accel, this->keyPointDisplacement.at(startIndex + 1)));
+        this->storedProfiles.at(startIndex * 2 + 1)->push_back(MotionState(0, this->spline.getValueX(u2), this->spline.getValueY(u2), this->rotationPercentage.getAngle(disp2), velocity * this->spline.getXVelocityComponent(u2), velocity * this->spline.getYVelocityComponent(u2), this->rotationPercentage.getValue(u2), accel, this->keyPointDisplacement.at(startIndex + 1)));
         if (!((prev.getSpeed() * .99 <= this->keyPointVelocity.at(startIndex + 1) && this->keyPointVelocity.at(startIndex + 1) <= velocity * 1.01) || (prev.getSpeed() * 1.01 >= this->keyPointVelocity.at(startIndex + 1) && this->keyPointVelocity.at(startIndex + 1) >= velocity * 0.99)))
         {
             this->keyPointVelocity.at(startIndex + 1) = velocity;
@@ -756,17 +763,17 @@ void Trajectory2::calculate(double iterateSize, double findSize)
     double startTime = 0.0;
     for (int i = 0; i < this->storedProfiles.size(); i++)
     {
-        startTime = this->storedProfiles.at(i).at(0).time - time;
-        for (int j = 0; j < this->storedProfiles.at(i).size(); j++)
+        startTime = this->storedProfiles.at(i)->at(0).time - time;
+        for (int j = 0; j < this->storedProfiles.at(i)->size(); j++)
         {
-            this->profile.push_back(MotionState(this->storedProfiles.at(i).at(j)));
+            this->profile.push_back(MotionState(this->storedProfiles.at(i)->at(j)));
             this->profile.at(this->profile.size() - 1).time = this->profile.at(this->profile.size() - 1).time - startTime;
         }
         i++;
-        startTime = this->storedProfiles.at(i).at(0).time - this->profile.at(this->profile.size() - 1).time;
-        for (int j = 0; j < this->storedProfiles.at(i).size() - 1 || (j < this->storedProfiles.at(i).size() && i == this->storedProfiles.size() - 1); j++)
+        startTime = this->storedProfiles.at(i)->at(0).time - this->profile.at(this->profile.size() - 1).time;
+        for (int j = 0; j < this->storedProfiles.at(i)->size() - 1 || (j < this->storedProfiles.at(i)->size() && i == this->storedProfiles.size() - 1); j++)
         {
-            this->profile.push_back(MotionState(this->storedProfiles.at(i).at(j)));
+            this->profile.push_back(MotionState(this->storedProfiles.at(i)->at(j)));
             this->profile.at(this->profile.size() - 1).time = this->profile.at(this->profile.size() - 1).time - startTime;
         }
         time = this->profile.at(this->profile.size() - 1).time;
