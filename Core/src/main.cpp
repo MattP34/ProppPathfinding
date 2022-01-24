@@ -22,7 +22,7 @@ double run(char **argv, vector<vector<double> > allPoints, RotaryPath rotaryPath
         if(save) {
             saveTrajectory(traj.getProfile(), saveFile);
         }
-        if(traj.getProfile()->size() == 0) return 0;
+        if(traj.getProfile()->empty()) return 0;
         return traj.getProfile()->at(traj.getProfile()->size()-1).time;
     }
     else
@@ -86,6 +86,13 @@ void tune(char **argv, vector<vector<double> > allPoints, RotaryPath rotaryPath)
 
 int main(int argc, char **argv)
 {
+    //COMMAND LINE FORMAT: arg1: config file, arg2: f, arg3: load file, arg4: save file, arg5: anything but f to tune, otherwise not needed
+    //tuning takes the path from trajectory visualization, optimizes it - can save seconds
+    //CSV FORMAT for loadfile: each line is a waypoint
+    //Waypoints: x, y, dr value, dtheta value, ddr, ddtheta, angle, if you use that angle (>1 use, <1 dont)
+    //CSV for config file (always use Kinematics2): max voltage of robot, ks, kv, ka, max acceleration, robot width, robot length, maximum centripetal acceleration
+    //max acceleration = max acceleration before the wheels skid, max centripetal = max before robot slides
+    //Single line csv
     if (argc <= 4)
         return 0;
     string configFile = argv[1];
